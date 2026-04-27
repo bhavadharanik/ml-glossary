@@ -1,0 +1,976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ML Engineer Glossary - Bhavadharani</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #0f0f13; color: #e0e0e0; line-height: 1.6; }
+
+  .top-bar { position: fixed; top: 0; left: 0; right: 0; background: #1a1a24; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; z-index: 100; border-bottom: 1px solid #2a2a3a; }
+  .top-bar h1 { font-size: 16px; color: #ff6b4a; }
+  .top-bar .controls { display: flex; gap: 8px; }
+  .top-bar button { background: #2a2a3a; color: #ccc; border: 1px solid #3a3a4a; padding: 6px 14px; border-radius: 6px; cursor: pointer; font-size: 13px; }
+  .top-bar button:hover { background: #3a3a4a; }
+  .top-bar button.active { background: #ff6b4a; color: white; border-color: #ff6b4a; }
+
+  .sidebar { position: fixed; top: 50px; left: 0; width: 240px; height: calc(100vh - 50px); background: #14141c; overflow-y: auto; padding: 16px 0; border-right: 1px solid #2a2a3a; }
+  .sidebar a { display: block; padding: 8px 20px; color: #888; text-decoration: none; font-size: 13px; border-left: 3px solid transparent; }
+  .sidebar a:hover { color: #ff6b4a; background: #1a1a24; border-left-color: #ff6b4a; }
+  .sidebar .progress { padding: 12px 20px; margin-bottom: 8px; }
+  .sidebar .progress-bar { background: #2a2a3a; border-radius: 10px; height: 6px; overflow: hidden; }
+  .sidebar .progress-fill { background: linear-gradient(90deg, #ff6b4a, #ff9a4a); height: 100%; border-radius: 10px; transition: width 0.5s; }
+  .sidebar .progress-text { font-size: 11px; color: #666; margin-top: 4px; }
+
+  .main { margin-left: 240px; margin-top: 50px; padding: 32px; max-width: 900px; }
+
+  .section { margin-bottom: 48px; }
+  .section-title { font-size: 22px; color: #ff6b4a; margin-bottom: 20px; padding-bottom: 8px; border-bottom: 2px solid #2a2a3a; }
+
+  .card { background: #1a1a24; border: 1px solid #2a2a3a; border-radius: 12px; padding: 20px; margin-bottom: 16px; transition: all 0.3s; position: relative; }
+  .card:hover { border-color: #ff6b4a; transform: translateY(-1px); }
+  .card.mastered { border-color: #4ade80; opacity: 0.7; }
+  .card.mastered .term { text-decoration: line-through; color: #4ade80; }
+
+  .term { font-size: 17px; font-weight: 700; color: #fff; margin-bottom: 8px; }
+  .definition { font-size: 14px; color: #bbb; margin-bottom: 10px; }
+  .analogy { background: #1e1e30; border-left: 3px solid #6366f1; padding: 10px 14px; border-radius: 0 8px 8px 0; font-size: 13px; color: #a5a6f6; font-style: italic; margin-bottom: 10px; }
+  .example { background: #1e2a1e; border-left: 3px solid #4ade80; padding: 10px 14px; border-radius: 0 8px 8px 0; font-size: 13px; color: #86efac; font-family: 'Courier New', monospace; }
+
+  .tags { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
+  .tag { font-size: 11px; padding: 2px 8px; border-radius: 12px; background: #2a2a3a; color: #888; }
+  .tag.elara { background: #2a1a1a; color: #ff6b4a; }
+  .tag.neutrofi { background: #1a1a2a; color: #6366f1; }
+  .tag.eeg { background: #1a2a1a; color: #4ade80; }
+  .tag.critical { background: #3a1a1a; color: #f87171; }
+
+  .master-btn { position: absolute; top: 16px; right: 16px; background: none; border: 2px solid #3a3a4a; color: #666; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; }
+  .master-btn:hover { border-color: #4ade80; color: #4ade80; }
+  .card.mastered .master-btn { background: #4ade80; border-color: #4ade80; color: #0f0f13; }
+
+  .diagram { background: #12121a; border: 1px solid #2a2a3a; border-radius: 12px; padding: 24px; margin: 20px 0; font-family: 'Courier New', monospace; font-size: 13px; color: #8888aa; line-height: 1.8; overflow-x: auto; white-space: pre; }
+  .diagram .highlight { color: #ff6b4a; font-weight: bold; }
+  .diagram .green { color: #4ade80; }
+  .diagram .purple { color: #a78bfa; }
+  .diagram .yellow { color: #fbbf24; }
+
+  .comparison { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 16px 0; }
+  .comparison .col { background: #1a1a24; border: 1px solid #2a2a3a; border-radius: 12px; padding: 16px; }
+  .comparison .col h4 { color: #ff6b4a; margin-bottom: 8px; font-size: 14px; }
+  .comparison .col p { font-size: 13px; color: #999; }
+
+  .formula-box { background: #1a1a24; border: 1px solid #2a2a3a; border-radius: 12px; padding: 16px 20px; margin: 12px 0; display: flex; align-items: center; gap: 20px; }
+  .formula-box .fname { font-weight: 700; color: #ff6b4a; min-width: 120px; font-size: 14px; }
+  .formula-box code { font-family: 'Courier New', monospace; color: #a78bfa; font-size: 15px; }
+
+  .quiz-section { background: #1a1a24; border: 1px solid #2a2a3a; border-radius: 12px; padding: 24px; margin: 24px 0; }
+  .quiz-section h3 { color: #fbbf24; margin-bottom: 16px; }
+  .quiz-q { margin-bottom: 12px; }
+  .quiz-q .q { font-size: 14px; color: #ddd; cursor: pointer; padding: 10px; background: #12121a; border-radius: 8px; border: 1px solid #2a2a3a; }
+  .quiz-q .q:hover { border-color: #fbbf24; }
+  .quiz-q .a { display: none; padding: 10px; margin-top: 4px; background: #1e2a1e; border-radius: 8px; font-size: 13px; color: #86efac; }
+  .quiz-q.open .a { display: block; }
+
+  .pitch-card { background: linear-gradient(135deg, #1a1a24, #1e1e30); border: 1px solid #3a3a4a; border-radius: 12px; padding: 24px; margin: 16px 0; }
+  .pitch-card h3 { color: #fff; margin-bottom: 4px; }
+  .pitch-card .time { color: #ff6b4a; font-size: 13px; margin-bottom: 12px; }
+  .pitch-card p { font-size: 14px; color: #bbb; margin-bottom: 8px; }
+  .pitch-card strong { color: #fff; }
+
+  .search-box { background: #1a1a24; border: 1px solid #2a2a3a; border-radius: 8px; padding: 8px 14px; color: #ddd; font-size: 14px; width: 220px; }
+  .search-box:focus { outline: none; border-color: #ff6b4a; }
+
+  #flashcard-modal { display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: rgba(0,0,0,0.85); z-index: 200; align-items: center; justify-content: center; }
+  #flashcard-modal.show { display: flex; }
+  .flashcard { background: #1a1a24; border: 2px solid #ff6b4a; border-radius: 16px; width: 500px; min-height: 300px; padding: 40px; text-align: center; cursor: pointer; perspective: 1000px; }
+  .flashcard .front { font-size: 24px; font-weight: 700; color: #fff; }
+  .flashcard .back { display: none; font-size: 16px; color: #bbb; }
+  .flashcard.flipped .front { display: none; }
+  .flashcard.flipped .back { display: block; }
+  .flashcard-nav { display: flex; gap: 16px; margin-top: 20px; }
+  .flashcard-nav button { background: #2a2a3a; color: #ccc; border: none; padding: 10px 24px; border-radius: 8px; cursor: pointer; font-size: 14px; }
+  .flashcard-nav button:hover { background: #ff6b4a; color: white; }
+  .flashcard-close { position: absolute; top: 20px; right: 30px; color: #666; font-size: 30px; cursor: pointer; }
+  .flashcard-counter { color: #666; font-size: 14px; margin-top: 12px; }
+
+  @media print {
+    .top-bar, .sidebar, .master-btn, .controls, .search-box { display: none !important; }
+    .main { margin-left: 0; margin-top: 0; }
+    .card { break-inside: avoid; border: 1px solid #ccc; }
+    body { background: white; color: black; }
+    .term { color: black; }
+    .definition { color: #333; }
+    .analogy { background: #f0f0ff; color: #333; }
+  }
+</style>
+</head>
+<body>
+
+<div class="top-bar">
+  <h1>ML Engineer Glossary</h1>
+  <div class="controls">
+    <input type="text" class="search-box" id="search" placeholder="Search terms..." oninput="filterCards()">
+    <button onclick="startFlashcards()">Flashcards</button>
+    <button onclick="window.print()">Print PDF</button>
+  </div>
+</div>
+
+<div class="sidebar">
+  <div class="progress">
+    <div class="progress-bar"><div class="progress-fill" id="progress-fill" style="width: 0%"></div></div>
+    <div class="progress-text"><span id="mastered-count">0</span> / <span id="total-count">0</span> mastered</div>
+  </div>
+  <a href="#fundamentals">1. ML Fundamentals</a>
+  <a href="#metrics">2. Evaluation Metrics</a>
+  <a href="#models">3. Classical ML Models</a>
+  <a href="#deeplearning">4. Deep Learning</a>
+  <a href="#nlp">5. NLP</a>
+  <a href="#transformers">6. Transformers</a>
+  <a href="#llms">7. LLMs & GenAI</a>
+  <a href="#rag">8. RAG & Agents</a>
+  <a href="#mlops">9. MLOps & Production</a>
+  <a href="#math">10. Math Essentials</a>
+  <a href="#projects">11. Your Projects</a>
+  <a href="#formulas">12. Key Formulas</a>
+  <a href="#quiz">13. Self-Quiz</a>
+  <a href="#flashcard-section">14. Flashcards</a>
+</div>
+
+<div class="main">
+
+<!-- ==================== ML FUNDAMENTALS ==================== -->
+<div class="section" id="fundamentals">
+<h2 class="section-title">1. ML Fundamentals</h2>
+
+<div class="diagram"><span class="highlight">How Machine Learning Works:</span>
+
+  <span class="yellow">Training Data</span>  ──>  [  <span class="highlight">Model</span>  ]  ──>  <span class="green">Predictions</span>
+       │                    ▲                     │
+       │                    │                     │
+       └── features ──>  <span class="purple">Learning Algorithm</span>  <──  loss (error)
+                         (gradient descent)
+
+  <span class="green">Analogy: Like TDD but automated</span>
+  Input examples = test cases
+  Model = your function
+  Training = auto-fixing the function until tests pass
+  Loss = number of failing tests</div>
+
+<div class="card" data-term="Machine Learning" data-section="fundamentals">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Machine Learning</div>
+  <div class="definition">A program that learns patterns from data instead of being explicitly programmed with rules.</div>
+  <div class="analogy">>> Instead of writing if/else rules, you show the system 10,000 examples and it figures out the rules itself.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span></div>
+</div>
+
+<div class="card" data-term="Model" data-section="fundamentals">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Model</div>
+  <div class="definition">A mathematical function that takes input and produces a prediction. Has parameters (weights) that are learned during training.</div>
+  <div class="analogy">>> Like an API endpoint with learned logic instead of hand-written logic. Input goes in, prediction comes out.</div>
+</div>
+
+<div class="card" data-term="Training" data-section="fundamentals">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Training</div>
+  <div class="definition">Showing a model many examples so it adjusts its parameters to make better predictions. Minimizes a loss function.</div>
+  <div class="analogy">>> Like running your function against thousands of test cases, auto-tweaking parameters each time until outputs match expected results.</div>
+</div>
+
+<div class="card" data-term="Inference" data-section="fundamentals">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Inference</div>
+  <div class="definition">Using a trained model to make predictions on new, unseen data. This is what happens in production.</div>
+  <div class="analogy">>> Like calling your deployed API in production. Training = development, inference = production.</div>
+</div>
+
+<div class="card" data-term="Loss Function" data-section="fundamentals">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Loss Function</div>
+  <div class="definition">Measures how wrong the model's predictions are. MSE for regression, cross-entropy for classification. Goal: minimize this.</div>
+  <div class="analogy">>> Like an error metric in your Grafana dashboard. Lower = better. Training tries to push this number down.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span></div>
+</div>
+
+<div class="card" data-term="Gradient Descent" data-section="fundamentals">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Gradient Descent</div>
+  <div class="definition">Algorithm that adjusts model parameters to reduce loss. Calculates which direction to change each parameter and by how much.</div>
+  <div class="analogy">>> Your model is wrong. The loss tells you HOW wrong. The gradient tells you WHICH DIRECTION to fix. The learning rate tells you HOW MUCH to fix. Like debugging with a compass.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span></div>
+</div>
+
+<div class="card" data-term="Overfitting" data-section="fundamentals">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Overfitting</div>
+  <div class="definition">Model memorizes training data but fails on new data. High training accuracy, low test accuracy.</div>
+  <div class="analogy">>> Like hardcoding "if userID == 123 return fraud". Works on test data, useless in production.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span></div>
+</div>
+
+<div class="card" data-term="Underfitting" data-section="fundamentals">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Underfitting</div>
+  <div class="definition">Model is too simple to capture patterns. Low accuracy on both training and test data.</div>
+  <div class="analogy">>> Like writing a single if/else rule when you need a complex decision tree. Too simple.</div>
+</div>
+
+<div class="card" data-term="Supervised Learning" data-section="fundamentals">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Supervised Learning</div>
+  <div class="definition">Training with labeled data: input AND correct answer. Classification and regression are supervised.</div>
+  <div class="analogy">>> Like unit tests with expected outputs. The model learns to match input to correct output.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span></div>
+</div>
+
+<div class="card" data-term="Unsupervised Learning" data-section="fundamentals">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Unsupervised Learning</div>
+  <div class="definition">Training without labels: model finds patterns/groups on its own. Clustering is unsupervised.</div>
+  <div class="analogy">>> Like grouping log entries by pattern without pre-defining categories.</div>
+</div>
+
+<div class="card" data-term="Train/Test/Validation Split" data-section="fundamentals">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Train / Test / Validation Split</div>
+  <div class="definition">Training (70-80%): model learns. Validation (10-15%): tune hyperparameters. Test (10-15%): final evaluation. NEVER touch test during training.</div>
+  <div class="analogy">>> Like dev/staging/production environments. Develop on dev, test on staging, final check is production.</div>
+</div>
+
+<div class="card" data-term="Feature" data-section="fundamentals">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Feature</div>
+  <div class="definition">An individual measurable property used as input to the model. Age, income, message_count are all features.</div>
+  <div class="analogy">>> Like parameters in an API request. Each feature is one field the model uses to decide.</div>
+</div>
+
+<div class="card" data-term="Feature Engineering" data-section="fundamentals">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Feature Engineering</div>
+  <div class="definition">Creating new features from raw data. E.g., extracting "day_of_week" from a timestamp.</div>
+  <div class="analogy">>> Like adding computed columns: price_per_sqft = price / sqft. Makes data more useful.</div>
+  <div class="tags"><span class="tag elara">Elara</span></div>
+</div>
+
+<div class="card" data-term="Hyperparameters" data-section="fundamentals">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Hyperparameters</div>
+  <div class="definition">Settings YOU choose before training (learning rate, batch size, layers). Not learned by the model.</div>
+  <div class="analogy">>> Like config values in your Docker environment variables. You set them, the system uses them.</div>
+</div>
+
+</div>
+
+<!-- ==================== EVALUATION METRICS ==================== -->
+<div class="section" id="metrics">
+<h2 class="section-title">2. Evaluation Metrics</h2>
+
+<div class="diagram"><span class="highlight">Confusion Matrix:</span>
+
+                       Predicted: YES    Predicted: NO
+  Actual: YES      │  <span class="green">True Positive</span>  │  <span class="highlight">False Negative</span>  │
+  Actual: NO       │  <span class="highlight">False Positive</span> │  <span class="green">True Negative</span>   │
+
+  <span class="yellow">Precision</span> = TP / (TP + FP)   "How trustworthy are my alerts?"
+  <span class="yellow">Recall</span>    = TP / (TP + FN)   "How many real problems did I catch?"
+  <span class="yellow">F1</span>        = 2*P*R / (P+R)    "Balance of both"
+
+  <span class="green">Your EEG project: CNN had 76% accuracy but F1=0.013 (USELESS)
+  CLIP had 24% accuracy but F1=0.345 (ACTUALLY WORKS)</span></div>
+
+<div class="card" data-term="Accuracy" data-section="metrics">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Accuracy</div>
+  <div class="definition">(TP + TN) / Total. Percentage of correct predictions. MISLEADING with imbalanced data.</div>
+  <div class="analogy">>> A fraud system that always says "not fraud" is 99% accurate but catches ZERO fraud.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span><span class="tag eeg">EEG Project</span></div>
+</div>
+
+<div class="card" data-term="Precision" data-section="metrics">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Precision</div>
+  <div class="definition">TP / (TP + FP). Of everything predicted positive, how many were actually positive? Optimize when false positives are costly.</div>
+  <div class="analogy">>> Your API returns 10 fraud alerts. 8 were real. Precision = 80%. "How trustworthy are my alerts?"</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span></div>
+</div>
+
+<div class="card" data-term="Recall" data-section="metrics">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Recall (Sensitivity)</div>
+  <div class="definition">TP / (TP + FN). Of all actual positives, how many did we catch? Optimize when missing positives is costly.</div>
+  <div class="analogy">>> 20 real frauds existed. You caught 8. Recall = 40%. "How many real problems did I detect?"</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span><span class="tag elara">Elara flags</span></div>
+</div>
+
+<div class="card" data-term="F1 Score" data-section="metrics">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">F1 Score</div>
+  <div class="definition">2 * (P * R) / (P + R). Harmonic mean of precision and recall. Use when you need balance.</div>
+  <div class="analogy">>> Your EEG project proved this: CNN had high accuracy but F1=0.013 (useless). CLIP had F1=0.345 (works). 27x improvement.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span><span class="tag eeg">EEG Project</span></div>
+</div>
+
+<div class="card" data-term="AUC-ROC" data-section="metrics">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">AUC-ROC</div>
+  <div class="definition">Area Under the ROC Curve. Plots True Positive Rate vs False Positive Rate. 1.0 = perfect, 0.5 = random.</div>
+  <div class="analogy">>> Like a performance graph showing how well your system separates signal from noise across all sensitivity settings.</div>
+</div>
+
+<div class="card" data-term="Class Imbalance" data-section="metrics">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Class Imbalance</div>
+  <div class="definition">When one class dominates (99% not-fraud, 1% fraud). Models predict majority class and look accurate but are useless.</div>
+  <div class="analogy">>> Your EEG CNN predicted majority class only = 76% accuracy but 0.013 F1. Fixed with SMOTE + Focal Loss.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span><span class="tag eeg">EEG Project</span></div>
+</div>
+
+</div>
+
+<!-- ==================== CLASSICAL MODELS ==================== -->
+<div class="section" id="models">
+<h2 class="section-title">3. Classical ML Models</h2>
+
+<div class="diagram"><span class="highlight">When to use which model:</span>
+
+  <span class="yellow">Tabular data?</span>
+    ├── Need interpretability? ──> <span class="green">Decision Tree / Logistic Regression</span>
+    ├── Best accuracy? ──> <span class="green">XGBoost</span> (industry standard)
+    ├── Good default? ──> <span class="green">Random Forest</span>
+    └── Predict a number? ──> <span class="green">Linear Regression</span>
+
+  <span class="yellow">No labels?</span>
+    └── Group similar items? ──> <span class="green">K-Means Clustering</span>
+
+  <span class="yellow">Text/Images/Sequence?</span>
+    └── <span class="green">Neural Networks / Transformers</span></div>
+
+<div class="card" data-term="Linear Regression" data-section="models">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Linear Regression</div>
+  <div class="definition">Predicts continuous values: y = w1*x1 + w2*x2 + ... + b. Minimizes MSE. Assumes linear relationship.</div>
+  <div class="analogy">>> y = mx + b but with many features. Predict house price from size, rooms, location.</div>
+</div>
+
+<div class="card" data-term="Logistic Regression" data-section="models">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Logistic Regression</div>
+  <div class="definition">Classification (despite the name). Linear regression + sigmoid to output probability 0-1. Threshold at 0.5.</div>
+  <div class="analogy">>> Like your Elara sigmoid: takes any number, squashes to 0-1. Above 0.5 = positive class.</div>
+  <div class="tags"><span class="tag elara">Elara sigmoid</span></div>
+</div>
+
+<div class="card" data-term="Decision Tree" data-section="models">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Decision Tree</div>
+  <div class="definition">If/else splits on features: "age > 30?" then "income > 50K?" Uses Gini impurity to choose splits. Overfits easily.</div>
+  <div class="analogy">>> Like a flowchart/switch statement. Easy to understand but memorizes data if too deep.</div>
+</div>
+
+<div class="card" data-term="Random Forest" data-section="models">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Random Forest</div>
+  <div class="definition">100-1000 decision trees on random data subsets. Final prediction = majority vote. Ensemble method. Resistant to overfitting.</div>
+  <div class="analogy">>> Like 100 microservice instances, each seeing slightly different data, taking consensus. More reliable than one.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span></div>
+</div>
+
+<div class="card" data-term="XGBoost" data-section="models">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">XGBoost / Gradient Boosting</div>
+  <div class="definition">Trees built SEQUENTIALLY: each tree fixes errors of previous. Tree 2 predicts ERRORS of Tree 1. Most used model in industry & Kaggle.</div>
+  <div class="analogy">>> Like iterative bug fixing: each deployment fixes bugs from the previous one. Each tree patches what the last got wrong.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span></div>
+</div>
+
+<div class="comparison">
+  <div class="col"><h4>Random Forest (Bagging)</h4><p>Trees trained INDEPENDENTLY on random subsets. Vote at the end. Good default, hard to mess up.</p></div>
+  <div class="col"><h4>XGBoost (Boosting)</h4><p>Trees trained SEQUENTIALLY, each fixing previous errors. Higher accuracy, needs more tuning.</p></div>
+</div>
+
+</div>
+
+<!-- ==================== DEEP LEARNING ==================== -->
+<div class="section" id="deeplearning">
+<h2 class="section-title">4. Deep Learning & Neural Networks</h2>
+
+<div class="diagram"><span class="highlight">Neural Network:</span>
+
+  Input Layer      Hidden Layer 1    Hidden Layer 2    Output
+  [feature 1] ──>  [ neuron ] ──>   [ neuron ] ──>   [prediction]
+  [feature 2] ──>  [ neuron ] ──>   [ neuron ] ──>
+  [feature 3] ──>  [ neuron ] ──>   [ neuron ]
+
+  Each connection has a <span class="yellow">weight</span>
+  Each neuron: <span class="purple">activation( weights * input + bias )</span>
+
+  <span class="highlight">Training loop:</span>
+  1. Forward pass ──> get prediction
+  2. Calculate loss ──> how wrong?
+  3. Backward pass ──> compute gradients (backpropagation)
+  4. Update weights ──> weights -= learning_rate * gradient
+  5. Repeat 1000x</div>
+
+<div class="card" data-term="Neural Network" data-section="deeplearning">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Neural Network</div>
+  <div class="definition">Layers of neurons. Input -> hidden layers -> output. Each neuron: weighted sum + activation function.</div>
+  <div class="analogy">>> Like a multi-layer microservice pipeline. Data flows through each layer, getting transformed.</div>
+</div>
+
+<div class="card" data-term="Backpropagation" data-section="deeplearning">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Backpropagation</div>
+  <div class="definition">After forward pass, calculate loss, then flow error BACKWARDS to compute how much each weight contributed. Then update weights.</div>
+  <div class="analogy">>> Like distributed tracing in reverse: error traced back through each service to find which component caused it.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span></div>
+</div>
+
+<div class="card" data-term="ReLU" data-section="deeplearning">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">ReLU (Rectified Linear Unit)</div>
+  <div class="definition">max(0, x). If positive, pass through. If negative, output 0. Most common activation for hidden layers.</div>
+  <div class="example">ReLU(5) = 5, ReLU(-3) = 0, ReLU(0.5) = 0.5</div>
+</div>
+
+<div class="card" data-term="Sigmoid" data-section="deeplearning">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Sigmoid</div>
+  <div class="definition">1 / (1 + e^(-x)). Squashes any number to 0-1. Used for binary classification output.</div>
+  <div class="analogy">>> YOU KNOW THIS from Elara: converts z-scores into 0-100 health scores. Same function!</div>
+  <div class="tags"><span class="tag elara">Elara</span><span class="tag critical">CRITICAL</span></div>
+</div>
+
+<div class="card" data-term="Dropout" data-section="deeplearning">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Dropout</div>
+  <div class="definition">During training, randomly set 30% of neurons to 0. Forces resilience. Turned OFF during inference.</div>
+  <div class="analogy">>> Like chaos engineering: randomly killing pods during testing. Disabled in production.</div>
+</div>
+
+<div class="card" data-term="Transfer Learning" data-section="deeplearning">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Transfer Learning</div>
+  <div class="definition">Using a model trained on one task as starting point for another. The pretrained model already knows useful features.</div>
+  <div class="analogy">>> Your EEG project: CLIP trained on 400M internet images works on EEG spectrograms. Like reusing a payment service across projects.</div>
+  <div class="tags"><span class="tag eeg">EEG Project</span></div>
+</div>
+
+</div>
+
+<!-- ==================== NLP ==================== -->
+<div class="section" id="nlp">
+<h2 class="section-title">5. NLP (Natural Language Processing)</h2>
+
+<div class="card" data-term="Tokenization" data-section="nlp">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Tokenization</div>
+  <div class="definition">Breaking text into tokens. "unhappiness" -> ["un", "happi", "ness"]. BPE most common. LLMs see tokens, not words.</div>
+  <div class="analogy">>> Like splitting a URL into path segments. The model processes tokens, not raw strings.</div>
+</div>
+
+<div class="card" data-term="Embedding" data-section="nlp">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Embedding</div>
+  <div class="definition">Dense vector representation. Similar items = similar vectors. "king" - "man" + "woman" ~ "queen". Typically 512-768 dimensions.</div>
+  <div class="analogy">>> Like hashing but meaningful: similar inputs produce similar outputs. A 512-dim fingerprint of meaning.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span></div>
+</div>
+
+<div class="card" data-term="Cosine Similarity" data-section="nlp">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Cosine Similarity</div>
+  <div class="definition">Measures angle between two vectors. cos(A,B) = (A.B) / (|A|*|B|). 1.0 = identical, 0 = unrelated. Core of RAG retrieval.</div>
+  <div class="example">cos([1,0], [0,1]) = 0 (perpendicular, unrelated)
+cos([1,0], [1,0]) = 1.0 (identical)
+cos([1,1], [1,0]) = 0.71 (somewhat similar)</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span></div>
+</div>
+
+</div>
+
+<!-- ==================== TRANSFORMERS ==================== -->
+<div class="section" id="transformers">
+<h2 class="section-title">6. Transformers & Attention</h2>
+
+<div class="diagram"><span class="highlight">Self-Attention: How Transformers Understand Context</span>
+
+  Sentence: "The <span class="yellow">cat</span> sat on the mat because <span class="yellow">it</span> was tired"
+
+  For the word "<span class="yellow">it</span>", attention looks at ALL other words:
+    "The"     -> low attention (0.02)
+    "<span class="yellow">cat</span>"     -> <span class="green">HIGH attention (0.65)</span>  <-- "it" refers to "cat"!
+    "sat"     -> low attention (0.08)
+    "mat"     -> low attention (0.05)
+    "tired"   -> medium attention (0.20)
+
+  <span class="purple">This is how the model knows "it" = "cat"</span>
+
+  <span class="highlight">The Math:</span>
+  Q (Query)  = "What am I looking for?"       <-- like a WHERE clause
+  K (Key)    = "What do I contain?"            <-- like a database index
+  V (Value)  = "What info do I provide?"       <-- like the returned data
+
+  Attention = softmax(Q * K^T / sqrt(d)) * V</div>
+
+<div class="card" data-term="Transformer" data-section="transformers">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Transformer</div>
+  <div class="definition">Architecture behind ALL modern LLMs. Processes all words simultaneously using self-attention. Replaced slow RNNs/LSTMs.</div>
+  <div class="analogy">>> Every LLM you use (Claude at Elara, Gemini in NeutroFi) is a Transformer. THE architecture of modern AI.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span></div>
+</div>
+
+<div class="card" data-term="Self-Attention" data-section="transformers">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Self-Attention</div>
+  <div class="definition">Each word looks at every other word to understand context. Computed using Query, Key, Value vectors.</div>
+  <div class="analogy">>> Like a service that checks ALL other services before responding, weighing which inputs matter most.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span></div>
+</div>
+
+<div class="comparison">
+  <div class="col"><h4>Encoder (BERT)</h4><p>Reads text bidirectionally. Creates rich representations. Best for: classification, NER, understanding.</p></div>
+  <div class="col"><h4>Decoder (GPT/Claude)</h4><p>Generates text one token at a time (left to right). Best for: text generation, conversation.</p></div>
+</div>
+
+</div>
+
+<!-- ==================== LLMs ==================== -->
+<div class="section" id="llms">
+<h2 class="section-title">7. LLMs & Generative AI</h2>
+
+<div class="diagram"><span class="highlight">How an LLM Generates Text:</span>
+
+  Input: "The cat sat on the"
+
+  Step 1: Model sees all tokens, computes probabilities:
+    "mat"   <span class="green">0.35</span>  <-- highest
+    "floor" 0.20
+    "bed"   0.15
+    "chair" 0.10
+    ...     ...
+
+  Step 2: Sample next token based on <span class="yellow">temperature</span>:
+    temp=0.0  -> always pick "mat" (deterministic)
+    temp=0.7  -> usually "mat", sometimes "floor"
+    temp=1.5  -> could pick anything (creative/random)
+
+  Step 3: Append "mat", repeat from Step 1:
+    "The cat sat on the mat" -> predict next -> "." (0.45)
+
+  <span class="purple">This is autoregressive generation: one token at a time</span></div>
+
+<div class="card" data-term="LLM" data-section="llms">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Large Language Model (LLM)</div>
+  <div class="definition">Very large transformer (billions of parameters) trained to predict next token on massive text data.</div>
+  <div class="analogy">>> Claude Haiku (Elara) and Gemini (NeutroFi) are both LLMs. They just predict the next word, really fast, really well.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span><span class="tag elara">Elara</span><span class="tag neutrofi">NeutroFi</span></div>
+</div>
+
+<div class="card" data-term="Temperature" data-section="llms">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Temperature</div>
+  <div class="definition">Controls randomness. 0 = deterministic (always pick highest probability). 1+ = creative/random. Divides logits before softmax.</div>
+  <div class="analogy">>> Your NeutroFi uses temp=0.3 (focused). Higher = more creative but less reliable.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span><span class="tag neutrofi">NeutroFi</span></div>
+</div>
+
+<div class="card" data-term="Prompt Engineering" data-section="llms">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Prompt Engineering</div>
+  <div class="definition">Designing prompts for better output. Zero-shot (no examples), few-shot (with examples), chain-of-thought (step by step).</div>
+  <div class="analogy">>> You do this at Elara: designing prompt templates for signal classification.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span><span class="tag elara">Elara</span></div>
+</div>
+
+<div class="card" data-term="Hallucination" data-section="llms">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Hallucination</div>
+  <div class="definition">LLM generates plausible but factually incorrect information. A fundamental challenge.</div>
+  <div class="analogy">>> This is why NeutroFi's risk manager uses rules, not LLM output. And why RAG grounds responses in real docs.</div>
+  <div class="tags"><span class="tag neutrofi">NeutroFi</span></div>
+</div>
+
+<div class="comparison">
+  <div class="col"><h4>Fine-tuning</h4><p>Change model behavior. Needs training data + compute. Risk: catastrophic forgetting. Best for: specific style/format.</p></div>
+  <div class="col"><h4>RAG</h4><p>Add external knowledge. No training needed. Best for: company docs, up-to-date info. Bottleneck: retrieval quality.</p></div>
+</div>
+
+</div>
+
+<!-- ==================== RAG & AGENTS ==================== -->
+<div class="section" id="rag">
+<h2 class="section-title">8. RAG & Agentic AI</h2>
+
+<div class="diagram"><span class="highlight">RAG Pipeline (Retrieval Augmented Generation):</span>
+
+  <span class="yellow">OFFLINE (once):</span>
+  Documents ──> <span class="purple">Chunk</span> (500 tokens) ──> <span class="purple">Embed</span> (sentence-transformers)
+                                            ──> <span class="green">Store in Vector DB</span> (FAISS)
+
+  <span class="yellow">ONLINE (per query):</span>
+  User Question ──> <span class="purple">Embed</span> ──> <span class="green">Search Vector DB</span> (cosine similarity)
+                               ──> Top 3 chunks retrieved
+                               ──> Build prompt: [context + question]
+                               ──> <span class="highlight">LLM generates grounded answer</span>
+
+  <span class="green">NOTE: Elara does NOT use RAG. But you must know it for interviews.</span></div>
+
+<div class="card" data-term="RAG" data-section="rag">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">RAG (Retrieval Augmented Generation)</div>
+  <div class="definition">Embed docs -> store in vector DB -> embed query -> find similar chunks -> pass to LLM -> grounded answer. Reduces hallucination.</div>
+  <div class="analogy">>> Like searching Stack Overflow before answering a question, instead of guessing from memory.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span></div>
+</div>
+
+<div class="card" data-term="Vector Database" data-section="rag">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Vector Database</div>
+  <div class="definition">DB optimized for similarity search on embeddings. FAISS (local), Pinecone, ChromaDB (managed). Uses cosine similarity.</div>
+  <div class="analogy">>> Like a database with "find similar" instead of exact match.</div>
+</div>
+
+<div class="card" data-term="Agent" data-section="rag">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Agent</div>
+  <div class="definition">LLM that can DECIDE what to do and USE TOOLS. Not just text generation - taking actions based on reasoning.</div>
+  <div class="analogy">>> Your NeutroFi: LLM decides to call CoinGecko API, gets data, then generates analysis.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span><span class="tag neutrofi">NeutroFi</span></div>
+</div>
+
+<div class="card" data-term="LangGraph" data-section="rag">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">LangGraph</div>
+  <div class="definition">Graph-based agent workflows. Nodes = steps, edges = connections, state = shared data. More flexible than chains.</div>
+  <div class="analogy">>> Your NeutroFi: StateGraph with 6 nodes. AgentState TypedDict carries data between nodes.</div>
+  <div class="tags"><span class="tag neutrofi">NeutroFi</span></div>
+</div>
+
+<div class="card" data-term="Tool Calling" data-section="rag">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Tool Use / Function Calling</div>
+  <div class="definition">Define tools the LLM can call. LLM decides WHICH tool and with WHAT arguments. You execute and return results.</div>
+  <div class="analogy">>> NeutroFi: llm.bind_tools(tools) with @tool decorator. LLM sees available tools and decides which to call.</div>
+  <div class="tags"><span class="tag neutrofi">NeutroFi</span></div>
+</div>
+
+</div>
+
+<!-- ==================== MLOps ==================== -->
+<div class="section" id="mlops">
+<h2 class="section-title">9. MLOps & Production</h2>
+
+<div class="diagram"><span class="highlight">ML Pipeline (Your Elara IS this):</span>
+
+  <span class="yellow">Data</span> ──> <span class="purple">Preprocess</span> ──> <span class="purple">Feature Eng</span> ──> <span class="green">Train</span> ──> <span class="green">Evaluate</span> ──> <span class="highlight">Deploy</span> ──> <span class="yellow">Monitor</span>
+   │                                                                    │
+   S3                                                               Grafana
+   PST files                                                    CloudWatch
+                                                                 structlog
+
+  <span class="green">Your Elara: ETL -> S3 -> Lambda 6-step -> RDS -> FastAPI -> React</span></div>
+
+<div class="card" data-term="Batch vs Real-time Inference" data-section="mlops">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Batch vs Real-time Inference</div>
+  <div class="definition">Batch: process large data periodically (your Elara every 2 weeks). Real-time: per-request (&lt;100ms, like fraud detection).</div>
+  <div class="analogy">>> Elara = batch (EventBridge bi-weekly). ThoughtWorks Pushpin = real-time (6s->2s latency).</div>
+  <div class="tags"><span class="tag elara">Elara</span></div>
+</div>
+
+<div class="card" data-term="Data Drift" data-section="mlops">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Data Drift</div>
+  <div class="definition">Input data distribution changes over time. Model trained on old data may fail on new patterns.</div>
+  <div class="analogy">>> Like API contract changes: if upstream services change their data format, your downstream service breaks.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span></div>
+</div>
+
+<div class="card" data-term="Model Drift" data-section="mlops">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Model Drift</div>
+  <div class="definition">Model performance degrades over time because the world changes. Need to retrain periodically.</div>
+  <div class="analogy">>> Like a Grafana alert: if your p99 latency suddenly spikes, something changed in the system.</div>
+</div>
+
+<div class="card" data-term="Quantization" data-section="mlops">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Quantization</div>
+  <div class="definition">Reduce model precision: 32-bit -> 8-bit. Makes model 4x smaller and faster. Slight quality loss.</div>
+  <div class="analogy">>> Like compressing Docker images. Smaller, faster deployment, minor quality tradeoff.</div>
+</div>
+
+</div>
+
+<!-- ==================== MATH ==================== -->
+<div class="section" id="math">
+<h2 class="section-title">10. Math Essentials</h2>
+
+<div class="card" data-term="Vector" data-section="math">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Vector</div>
+  <div class="definition">A list of numbers: [3, 4, 5]. Embeddings are high-dimensional vectors (512-dim). Core of all ML.</div>
+  <div class="example">[3, 4] is a 2D vector. A 512-dim embedding is just a list of 512 floats.</div>
+</div>
+
+<div class="card" data-term="Dot Product" data-section="math">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Dot Product</div>
+  <div class="definition">Multiply elements and sum: [1,2,3] . [4,5,6] = 4+10+18 = 32. Core of attention and similarity.</div>
+  <div class="example">np.dot([1,2,3], [4,5,6]) = 32</div>
+</div>
+
+<div class="card" data-term="Standard Deviation" data-section="math">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Standard Deviation</div>
+  <div class="definition">How spread out values are from the mean. Used in z-score: z = (value - mean) / std.</div>
+  <div class="analogy">>> You use this in Elara: baseline_std is how much signal counts typically vary.</div>
+  <div class="tags"><span class="tag elara">Elara</span></div>
+</div>
+
+</div>
+
+<!-- ==================== YOUR PROJECTS ==================== -->
+<div class="section" id="projects">
+<h2 class="section-title">11. Your Projects - Interview Pitches</h2>
+
+<div class="pitch-card">
+  <h3>ELARA</h3>
+  <div class="time">5-minute pitch</div>
+  <p><strong>Problem:</strong> Employee disengagement costs UK ~&pound;52B/yr. Detection via surveys takes 12 weeks.</p>
+  <p><strong>Solution:</strong> NLP pipeline analyzing Teams messages every 2 weeks. 13 signals, 6 health dimensions.</p>
+  <p><strong>How:</strong> Claude Haiku classifies signals -> z-score normalization -> sigmoid (0-100) -> pattern detection (flags/streaks) -> coaching.</p>
+  <p><strong>Scale:</strong> 94K messages, 6-step Lambda (4GB, 15min timeout), error isolation per vital/org.</p>
+  <p><strong>Infra:</strong> S3, Lambda, RDS, EventBridge, App Runner, Terraform.</p>
+  <p><strong>Impact:</strong> 10 weeks earlier detection than quarterly surveys.</p>
+  <p><strong>Improve:</strong> Add caching, prompt versioning, A/B testing, token tracking.</p>
+</div>
+
+<div class="pitch-card">
+  <h3>NEUTROFI</h3>
+  <div class="time">3-minute pitch</div>
+  <p><strong>Problem:</strong> Crypto investors face info overload across news, exchanges, Reddit, charts.</p>
+  <p><strong>Solution:</strong> 6-agent LangGraph pipeline: specialized LLM agents + rule-based risk guardrails -> personalized Buy/Hold/Sell.</p>
+  <p><strong>Key Design:</strong> Hybrid AI + rules. Risk manager applies deterministic guardrails. New buyers need >0.8 confidence.</p>
+  <p><strong>Stack:</strong> LangGraph, LangChain, Gemini 1.5 Flash, tool-calling, Streamlit.</p>
+  <p><strong>Improve:</strong> Parallelize first 4 agents, add caching, structured output over regex.</p>
+</div>
+
+<div class="pitch-card">
+  <h3>EEG EMOTION CLASSIFICATION</h3>
+  <div class="time">2-minute pitch</div>
+  <p><strong>Problem:</strong> Cross-subject EEG emotion recognition fails due to brain variability.</p>
+  <p><strong>Key Insight:</strong> CNN got 76% accuracy but F1=0.013 (predicts majority class). CLIP got 24% accuracy but F1=0.345 (actually works). 27x improvement.</p>
+  <p><strong>Techniques:</strong> LOSO cross-validation, SMOTE, focal loss, threshold optimization, GradCAM + SHAP.</p>
+  <p><strong>Stack:</strong> PyTorch, OpenCLIP ViT-B/32, Scikit-learn, Streamlit.</p>
+</div>
+
+</div>
+
+<!-- ==================== FORMULAS ==================== -->
+<div class="section" id="formulas">
+<h2 class="section-title">12. Key Formulas</h2>
+
+<div class="formula-box"><span class="fname">Z-Score</span><code>z = (value - mean) / std</code></div>
+<div class="formula-box"><span class="fname">Sigmoid</span><code>&sigma;(x) = 1 / (1 + e^(-x))</code></div>
+<div class="formula-box"><span class="fname">Softmax</span><code>softmax(xi) = e^xi / &Sigma;(e^xj)</code></div>
+<div class="formula-box"><span class="fname">MSE</span><code>MSE = (1/n) * &Sigma;(predicted - actual)&sup2;</code></div>
+<div class="formula-box"><span class="fname">Cross-Entropy</span><code>CE = -&Sigma;(y * log(predicted))</code></div>
+<div class="formula-box"><span class="fname">Cosine Similarity</span><code>cos(A,B) = (A &middot; B) / (|A| * |B|)</code></div>
+<div class="formula-box"><span class="fname">Precision</span><code>P = TP / (TP + FP)</code></div>
+<div class="formula-box"><span class="fname">Recall</span><code>R = TP / (TP + FN)</code></div>
+<div class="formula-box"><span class="fname">F1 Score</span><code>F1 = 2 * (P * R) / (P + R)</code></div>
+<div class="formula-box"><span class="fname">Attention</span><code>Attn(Q,K,V) = softmax(QK^T / &radic;d) * V</code></div>
+<div class="formula-box"><span class="fname">Focal Loss</span><code>FL(pt) = -&alpha; * (1-pt)^&gamma; * log(pt)</code></div>
+<div class="formula-box"><span class="fname">Gini</span><code>G = &Sigma;((2i - n - 1) * xi) / (n * &Sigma;xi)</code></div>
+
+</div>
+
+<!-- ==================== QUIZ ==================== -->
+<div class="section" id="quiz">
+<h2 class="section-title">13. Self-Quiz (Click to Reveal)</h2>
+
+<div class="quiz-section">
+<h3>Test Yourself</h3>
+
+<div class="quiz-q" onclick="this.classList.toggle('open')">
+  <div class="q">What's the difference between precision and recall?</div>
+  <div class="a">Precision = of my positive predictions, how many were correct? Recall = of all actual positives, how many did I catch? Precision cares about false positives, recall cares about false negatives.</div>
+</div>
+
+<div class="quiz-q" onclick="this.classList.toggle('open')">
+  <div class="q">Why was 76% accuracy bad in your EEG project?</div>
+  <div class="a">The CNN predicted the majority class for everything. 76% of the data was one class, so always predicting that class = 76% accuracy but F1=0.013. It learned nothing. CLIP actually classified both classes: 24% accuracy but F1=0.345.</div>
+</div>
+
+<div class="quiz-q" onclick="this.classList.toggle('open')">
+  <div class="q">Explain RAG in 30 seconds.</div>
+  <div class="a">Embed your documents and store in a vector database. When user asks a question, embed the question, search for similar document chunks, pass those chunks + question to an LLM, get an answer grounded in real data instead of hallucinated.</div>
+</div>
+
+<div class="quiz-q" onclick="this.classList.toggle('open')">
+  <div class="q">What does temperature do in LLM inference?</div>
+  <div class="a">Controls randomness. Temperature=0 always picks the highest probability token (deterministic). Temperature=1+ adds randomness (creative). Technically: divides logits by temperature before softmax.</div>
+</div>
+
+<div class="quiz-q" onclick="this.classList.toggle('open')">
+  <div class="q">Why does your NeutroFi risk manager use rules instead of LLM?</div>
+  <div class="a">LLMs can hallucinate. For financial recommendations, you need deterministic guardrails. If confidence < 0.55, force "Hold" regardless. New buyers need >0.8 confidence. You can't trust pure LLM output for money decisions.</div>
+</div>
+
+<div class="quiz-q" onclick="this.classList.toggle('open')">
+  <div class="q">Random Forest vs XGBoost?</div>
+  <div class="a">Random Forest: trees trained INDEPENDENTLY on random subsets, vote at end (bagging). XGBoost: trees trained SEQUENTIALLY, each fixing errors of the previous (boosting). XGBoost usually more accurate but needs more tuning.</div>
+</div>
+
+<div class="quiz-q" onclick="this.classList.toggle('open')">
+  <div class="q">What is backpropagation?</div>
+  <div class="a">After the forward pass (prediction), calculate the loss (error). Then flow the error BACKWARDS through the network using chain rule to compute how much each weight contributed to the error. Then update weights proportionally.</div>
+</div>
+
+<div class="quiz-q" onclick="this.classList.toggle('open')">
+  <div class="q">Why did you use z-score + sigmoid at Elara?</div>
+  <div class="a">Z-score compares a signal against its baseline (how unusual is this?). But z-scores can be any number (-3 to +3). Sigmoid squashes them to 0-100 for managers to read easily. A manager sees "score: 72" not "z-score: 1.3".</div>
+</div>
+
+<div class="quiz-q" onclick="this.classList.toggle('open')">
+  <div class="q">Explain the Transformer attention mechanism.</div>
+  <div class="a">Each word has Q (query), K (key), V (value) vectors. Compute attention scores: Q dot K for every word pair. Scale by sqrt(d). Softmax to get probabilities. Multiply by V for weighted output. This lets each word attend to all other words simultaneously.</div>
+</div>
+
+<div class="quiz-q" onclick="this.classList.toggle('open')">
+  <div class="q">When would you use fine-tuning vs RAG vs prompting?</div>
+  <div class="a">Prompting: quick, no training, good for simple tasks. RAG: need company-specific data, no training needed, bottleneck is retrieval. Fine-tuning: need specific behavior/format, requires data + compute, risk of catastrophic forgetting.</div>
+</div>
+
+</div>
+</div>
+
+<!-- ==================== FLASHCARD SECTION ==================== -->
+<div class="section" id="flashcard-section">
+<h2 class="section-title">14. Flashcard Mode</h2>
+<p style="color: #888; margin-bottom: 16px;">Click the "Flashcards" button in the top bar to start. Click the card to flip, use arrows to navigate. Practice daily until every term is instant.</p>
+</div>
+
+</div>
+
+<!-- FLASHCARD MODAL -->
+<div id="flashcard-modal">
+  <span class="flashcard-close" onclick="closeFlashcards()">&times;</span>
+  <div style="text-align: center;">
+    <div class="flashcard" id="flashcard" onclick="flipCard()">
+      <div class="front" id="fc-front"></div>
+      <div class="back" id="fc-back"></div>
+    </div>
+    <div class="flashcard-counter" id="fc-counter"></div>
+    <div class="flashcard-nav">
+      <button onclick="prevCard()">&larr; Previous</button>
+      <button onclick="shuffleCards()">Shuffle</button>
+      <button onclick="nextCard()">Next &rarr;</button>
+    </div>
+  </div>
+</div>
+
+<script>
+// Mastery tracking
+function toggleMaster(btn) {
+  const card = btn.closest('.card');
+  card.classList.toggle('mastered');
+  updateProgress();
+  saveMastery();
+}
+
+function updateProgress() {
+  const total = document.querySelectorAll('.card').length;
+  const mastered = document.querySelectorAll('.card.mastered').length;
+  document.getElementById('total-count').textContent = total;
+  document.getElementById('mastered-count').textContent = mastered;
+  document.getElementById('progress-fill').style.width = ((mastered/total)*100) + '%';
+}
+
+function saveMastery() {
+  const mastered = [];
+  document.querySelectorAll('.card.mastered').forEach(c => mastered.push(c.dataset.term));
+  localStorage.setItem('ml-glossary-mastered', JSON.stringify(mastered));
+}
+
+function loadMastery() {
+  const saved = JSON.parse(localStorage.getItem('ml-glossary-mastered') || '[]');
+  document.querySelectorAll('.card').forEach(c => {
+    if (saved.includes(c.dataset.term)) c.classList.add('mastered');
+  });
+  updateProgress();
+}
+
+// Search
+function filterCards() {
+  const q = document.getElementById('search').value.toLowerCase();
+  document.querySelectorAll('.card').forEach(c => {
+    const text = c.textContent.toLowerCase();
+    c.style.display = text.includes(q) ? '' : 'none';
+  });
+}
+
+// Flashcards
+let fcCards = [];
+let fcIndex = 0;
+
+function startFlashcards() {
+  fcCards = [];
+  document.querySelectorAll('.card:not(.mastered)').forEach(c => {
+    fcCards.push({
+      term: c.querySelector('.term').textContent,
+      def: c.querySelector('.definition').textContent,
+      analogy: c.querySelector('.analogy') ? c.querySelector('.analogy').textContent : ''
+    });
+  });
+  if (fcCards.length === 0) {
+    fcCards = [];
+    document.querySelectorAll('.card').forEach(c => {
+      fcCards.push({
+        term: c.querySelector('.term').textContent,
+        def: c.querySelector('.definition').textContent,
+        analogy: c.querySelector('.analogy') ? c.querySelector('.analogy').textContent : ''
+      });
+    });
+  }
+  fcIndex = 0;
+  showFlashcard();
+  document.getElementById('flashcard-modal').classList.add('show');
+}
+
+function showFlashcard() {
+  if (fcCards.length === 0) return;
+  const card = fcCards[fcIndex];
+  document.getElementById('fc-front').textContent = card.term;
+  document.getElementById('fc-back').innerHTML = card.def + (card.analogy ? '<br><br><em style="color:#a5a6f6;">' + card.analogy + '</em>' : '');
+  document.getElementById('fc-counter').textContent = (fcIndex+1) + ' / ' + fcCards.length;
+  document.getElementById('flashcard').classList.remove('flipped');
+}
+
+function flipCard() { document.getElementById('flashcard').classList.toggle('flipped'); }
+function nextCard() { fcIndex = (fcIndex + 1) % fcCards.length; showFlashcard(); }
+function prevCard() { fcIndex = (fcIndex - 1 + fcCards.length) % fcCards.length; showFlashcard(); }
+function shuffleCards() { fcCards.sort(() => Math.random() - 0.5); fcIndex = 0; showFlashcard(); }
+function closeFlashcards() { document.getElementById('flashcard-modal').classList.remove('show'); }
+
+// Keyboard shortcuts
+document.addEventListener('keydown', e => {
+  if (document.getElementById('flashcard-modal').classList.contains('show')) {
+    if (e.key === 'ArrowRight') nextCard();
+    if (e.key === 'ArrowLeft') prevCard();
+    if (e.key === ' ') { e.preventDefault(); flipCard(); }
+    if (e.key === 'Escape') closeFlashcards();
+  }
+});
+
+// Init
+loadMastery();
+</script>
+</body>
+</html>
