@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ML Engineer Glossary - Bhavadharani</title>
+<title>ML &amp; AI Engineer Glossary — Interview Prep</title>
 <style>
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: #0f0f13; color: #e0e0e0; line-height: 1.6; }
@@ -40,10 +40,10 @@
 
   .tags { display: flex; gap: 6px; margin-top: 10px; flex-wrap: wrap; }
   .tag { font-size: 11px; padding: 2px 8px; border-radius: 12px; background: #2a2a3a; color: #888; }
-  .tag.elara { background: #2a1a1a; color: #ff6b4a; }
-  .tag.neutrofi { background: #1a1a2a; color: #6366f1; }
-  .tag.eeg { background: #1a2a1a; color: #4ade80; }
   .tag.critical { background: #3a1a1a; color: #f87171; }
+  .tag.interview { background: #3a3a1a; color: #fbbf24; }
+  .tag.production { background: #1a2a1a; color: #4ade80; }
+  .tag.uk-market { background: #1a1a3a; color: #818cf8; }
 
   .master-btn { position: absolute; top: 16px; right: 16px; background: none; border: 2px solid #3a3a4a; color: #666; width: 28px; height: 28px; border-radius: 50%; cursor: pointer; font-size: 14px; display: flex; align-items: center; justify-content: center; }
   .master-btn:hover { border-color: #4ade80; color: #4ade80; }
@@ -108,7 +108,7 @@
 <body>
 
 <div class="top-bar">
-  <h1>ML Engineer Glossary</h1>
+  <h1>ML &amp; AI Engineer Glossary — Interview Prep</h1>
   <div class="controls">
     <input type="text" class="search-box" id="search" placeholder="Search terms..." oninput="filterCards()">
     <button onclick="startFlashcards()">Flashcards</button>
@@ -127,14 +127,15 @@
   <a href="#deeplearning">4. Deep Learning</a>
   <a href="#nlp">5. NLP</a>
   <a href="#transformers">6. Transformers</a>
-  <a href="#llms">7. LLMs & GenAI</a>
-  <a href="#rag">8. RAG & Agents</a>
-  <a href="#mlops">9. MLOps & Production</a>
-  <a href="#math">10. Math Essentials</a>
-  <a href="#projects">11. Your Projects</a>
-  <a href="#formulas">12. Key Formulas</a>
-  <a href="#quiz">13. Self-Quiz</a>
-  <a href="#flashcard-section">14. Flashcards</a>
+  <a href="#llms">7. LLMs &amp; GenAI</a>
+  <a href="#rag">8. RAG &amp; Agents</a>
+  <a href="#mlops">9. MLOps &amp; Production</a>
+  <a href="#ethics">10. Ethics, Fairness &amp; UK</a>
+  <a href="#math">11. Math Essentials</a>
+  <a href="#interview">12. Interview Preparation</a>
+  <a href="#formulas">13. Key Formulas</a>
+  <a href="#quiz">14. Self-Quiz</a>
+  <a href="#flashcard-section">15. Flashcards</a>
 </div>
 
 <div class="main">
@@ -206,7 +207,7 @@
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Overfitting</div>
   <div class="definition">Model memorizes training data but fails on new data. High training accuracy, low test accuracy.</div>
-  <div class="analogy">>> Like hardcoding "if userID == 123 return fraud". Works on test data, useless in production.</div>
+  <div class="analogy">>> Like hardcoding "if requestID == 42 return success". Works during testing, useless in production.</div>
   <div class="tags"><span class="tag critical">CRITICAL</span></div>
 </div>
 
@@ -214,7 +215,7 @@
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Underfitting</div>
   <div class="definition">Model is too simple to capture patterns. Low accuracy on both training and test data.</div>
-  <div class="analogy">>> Like writing a single if/else rule when you need a complex decision tree. Too simple.</div>
+  <div class="analogy">>> Like writing a single if/else rule when you need a complex decision tree. Too simple for the problem.</div>
 </div>
 
 <div class="card" data-term="Supervised Learning" data-section="fundamentals">
@@ -229,14 +230,14 @@
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Unsupervised Learning</div>
   <div class="definition">Training without labels: model finds patterns/groups on its own. Clustering is unsupervised.</div>
-  <div class="analogy">>> Like grouping log entries by pattern without pre-defining categories.</div>
+  <div class="analogy">>> Like grouping log entries by pattern without pre-defining categories — the system finds natural clusters.</div>
 </div>
 
 <div class="card" data-term="Train/Test/Validation Split" data-section="fundamentals">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Train / Test / Validation Split</div>
   <div class="definition">Training (70-80%): model learns. Validation (10-15%): tune hyperparameters. Test (10-15%): final evaluation. NEVER touch test during training.</div>
-  <div class="analogy">>> Like dev/staging/production environments. Develop on dev, test on staging, final check is production.</div>
+  <div class="analogy">>> Like dev/staging/production environments. Build on dev, validate on staging, final check is production — never skip stages.</div>
 </div>
 
 <div class="card" data-term="Feature" data-section="fundamentals">
@@ -249,16 +250,16 @@
 <div class="card" data-term="Feature Engineering" data-section="fundamentals">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Feature Engineering</div>
-  <div class="definition">Creating new features from raw data. E.g., extracting "day_of_week" from a timestamp.</div>
-  <div class="analogy">>> Like adding computed columns: price_per_sqft = price / sqft. Makes data more useful.</div>
-  <div class="tags"><span class="tag elara">Elara</span></div>
+  <div class="definition">Creating new features from raw data. E.g., extracting "day_of_week" from a timestamp, or "messages_per_hour" from a count and duration.</div>
+  <div class="analogy">>> Like adding computed columns to a database view: price_per_sqft = price / sqft. Transforms raw data into more informative signals.</div>
+  <div class="tags"><span class="tag interview">INTERVIEW</span></div>
 </div>
 
 <div class="card" data-term="Hyperparameters" data-section="fundamentals">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Hyperparameters</div>
-  <div class="definition">Settings YOU choose before training (learning rate, batch size, layers). Not learned by the model.</div>
-  <div class="analogy">>> Like config values in your Docker environment variables. You set them, the system uses them.</div>
+  <div class="definition">Settings YOU choose before training (learning rate, batch size, number of layers). Not learned by the model itself.</div>
+  <div class="analogy">>> Like config values in your Docker environment variables or Helm values.yaml. You set them; the system uses them.</div>
 </div>
 
 </div>
@@ -277,54 +278,79 @@
   <span class="yellow">Recall</span>    = TP / (TP + FN)   "How many real problems did I catch?"
   <span class="yellow">F1</span>        = 2*P*R / (P+R)    "Balance of both"
 
-  <span class="green">Your EEG project: CNN had 76% accuracy but F1=0.013 (USELESS)
-  CLIP had 24% accuracy but F1=0.345 (ACTUALLY WORKS)</span></div>
+  <span class="green">Example: fraud detection with 99% non-fraud data
+  Model that always says "not fraud" = 99% accuracy, F1 ≈ 0 (useless)
+  Good model: 85% accuracy, F1 = 0.78 (actually works)</span></div>
 
 <div class="card" data-term="Accuracy" data-section="metrics">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Accuracy</div>
   <div class="definition">(TP + TN) / Total. Percentage of correct predictions. MISLEADING with imbalanced data.</div>
-  <div class="analogy">>> A fraud system that always says "not fraud" is 99% accurate but catches ZERO fraud.</div>
-  <div class="tags"><span class="tag critical">CRITICAL</span><span class="tag eeg">EEG Project</span></div>
+  <div class="analogy">>> A fraud system that always says "not fraud" is 99% accurate but catches ZERO fraud. Always check F1 too.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span><span class="tag interview">INTERVIEW</span></div>
 </div>
 
 <div class="card" data-term="Precision" data-section="metrics">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Precision</div>
   <div class="definition">TP / (TP + FP). Of everything predicted positive, how many were actually positive? Optimize when false positives are costly.</div>
-  <div class="analogy">>> Your API returns 10 fraud alerts. 8 were real. Precision = 80%. "How trustworthy are my alerts?"</div>
+  <div class="analogy">>> Your monitoring system raises 10 alerts. 8 were real incidents. Precision = 80%. "How trustworthy are my alerts?"</div>
   <div class="tags"><span class="tag critical">CRITICAL</span></div>
 </div>
 
 <div class="card" data-term="Recall" data-section="metrics">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Recall (Sensitivity)</div>
-  <div class="definition">TP / (TP + FN). Of all actual positives, how many did we catch? Optimize when missing positives is costly.</div>
-  <div class="analogy">>> 20 real frauds existed. You caught 8. Recall = 40%. "How many real problems did I detect?"</div>
-  <div class="tags"><span class="tag critical">CRITICAL</span><span class="tag elara">Elara flags</span></div>
+  <div class="definition">TP / (TP + FN). Of all actual positives, how many did we catch? Optimize when missing positives is costly (cancer detection, fraud).</div>
+  <div class="analogy">>> 20 real security incidents happened. Your SIEM caught 8. Recall = 40%. "How many real problems did I detect?"</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span></div>
 </div>
 
 <div class="card" data-term="F1 Score" data-section="metrics">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">F1 Score</div>
-  <div class="definition">2 * (P * R) / (P + R). Harmonic mean of precision and recall. Use when you need balance.</div>
-  <div class="analogy">>> Your EEG project proved this: CNN had high accuracy but F1=0.013 (useless). CLIP had F1=0.345 (works). 27x improvement.</div>
-  <div class="tags"><span class="tag critical">CRITICAL</span><span class="tag eeg">EEG Project</span></div>
+  <div class="definition">2 * (P * R) / (P + R). Harmonic mean of precision and recall. Use when you need balance between the two, especially with imbalanced classes.</div>
+  <div class="analogy">>> On imbalanced data, high accuracy can mask a broken model. F1 exposes it: a classifier that ignores the minority class will show F1 near 0.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span><span class="tag interview">INTERVIEW</span></div>
 </div>
 
 <div class="card" data-term="AUC-ROC" data-section="metrics">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">AUC-ROC</div>
-  <div class="definition">Area Under the ROC Curve. Plots True Positive Rate vs False Positive Rate. 1.0 = perfect, 0.5 = random.</div>
-  <div class="analogy">>> Like a performance graph showing how well your system separates signal from noise across all sensitivity settings.</div>
+  <div class="definition">Area Under the ROC Curve. Plots True Positive Rate vs False Positive Rate at all thresholds. 1.0 = perfect, 0.5 = random.</div>
+  <div class="analogy">>> Like a performance graph showing how well your system separates signal from noise across all sensitivity settings — threshold-independent.</div>
 </div>
 
 <div class="card" data-term="Class Imbalance" data-section="metrics">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Class Imbalance</div>
-  <div class="definition">When one class dominates (99% not-fraud, 1% fraud). Models predict majority class and look accurate but are useless.</div>
-  <div class="analogy">>> Your EEG CNN predicted majority class only = 76% accuracy but 0.013 F1. Fixed with SMOTE + Focal Loss.</div>
-  <div class="tags"><span class="tag critical">CRITICAL</span><span class="tag eeg">EEG Project</span></div>
+  <div class="definition">When one class dominates (99% not-fraud, 1% fraud). Models predict the majority class and look accurate but are useless.</div>
+  <div class="analogy">>> A model trained on server logs where 99% are INFO and 1% are ERROR will often just predict INFO for everything. Fix with SMOTE oversampling, class weights, or focal loss.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span><span class="tag interview">INTERVIEW</span></div>
+</div>
+
+<div class="card" data-term="Precision@K / Recall@K" data-section="metrics">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Precision@K / Recall@K</div>
+  <div class="definition">Retrieval metrics evaluated at the top K results. Precision@K = relevant items in top K / K. Recall@K = relevant items in top K / all relevant items.</div>
+  <div class="analogy">>> Like asking: of the top 10 search results returned, how many were actually useful? P@10 tells you your top-10 quality.</div>
+  <div class="tags"><span class="tag interview">INTERVIEW</span><span class="tag production">PRODUCTION</span></div>
+</div>
+
+<div class="card" data-term="NDCG" data-section="metrics">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">NDCG (Normalized Discounted Cumulative Gain)</div>
+  <div class="definition">Ranking metric that rewards relevant results appearing higher in the list. Discounts relevance by position. 1.0 = perfect ranking.</div>
+  <div class="analogy">>> Search engines care not just whether relevant results appear but whether they appear FIRST. NDCG penalizes a correct result buried at position 8 vs position 1.</div>
+  <div class="tags"><span class="tag interview">INTERVIEW</span></div>
+</div>
+
+<div class="card" data-term="MRR" data-section="metrics">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">MRR (Mean Reciprocal Rank)</div>
+  <div class="definition">Average of 1/rank of the first relevant result across queries. If the first correct answer is at position 3, score = 1/3.</div>
+  <div class="analogy">>> In a Q&amp;A system, MRR measures whether the right answer tends to appear near the top. Position 1 scores 1.0, position 2 scores 0.5, position 5 scores 0.2.</div>
+  <div class="tags"><span class="tag interview">INTERVIEW</span></div>
 </div>
 
 </div>
@@ -350,51 +376,51 @@
 <div class="card" data-term="Linear Regression" data-section="models">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Linear Regression</div>
-  <div class="definition">Predicts continuous values: y = w1*x1 + w2*x2 + ... + b. Minimizes MSE. Assumes linear relationship.</div>
-  <div class="analogy">>> y = mx + b but with many features. Predict house price from size, rooms, location.</div>
+  <div class="definition">Predicts continuous values: y = w1*x1 + w2*x2 + ... + b. Minimizes MSE. Assumes a linear relationship between inputs and output.</div>
+  <div class="analogy">>> y = mx + b but with many features. Predict house price from size, bedrooms, and location.</div>
 </div>
 
 <div class="card" data-term="Logistic Regression" data-section="models">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Logistic Regression</div>
-  <div class="definition">Classification (despite the name). Linear regression + sigmoid to output probability 0-1. Threshold at 0.5.</div>
-  <div class="analogy">>> Like your Elara sigmoid: takes any number, squashes to 0-1. Above 0.5 = positive class.</div>
-  <div class="tags"><span class="tag elara">Elara sigmoid</span></div>
+  <div class="definition">Classification (despite the name). Applies sigmoid to a linear combination of features to output a probability 0-1. Threshold at 0.5 by default.</div>
+  <div class="analogy">>> Takes any linear score, squashes it to 0-1 via sigmoid. Output above 0.5 = positive class. Simple and interpretable — often required in regulated industries.</div>
+  <div class="tags"><span class="tag uk-market">UK MARKET</span></div>
 </div>
 
 <div class="card" data-term="Decision Tree" data-section="models">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Decision Tree</div>
-  <div class="definition">If/else splits on features: "age > 30?" then "income > 50K?" Uses Gini impurity to choose splits. Overfits easily.</div>
-  <div class="analogy">>> Like a flowchart/switch statement. Easy to understand but memorizes data if too deep.</div>
+  <div class="definition">If/else splits on features: "age > 30?" then "income > 50K?". Uses Gini impurity to choose splits. Human-readable but overfits easily.</div>
+  <div class="analogy">>> Like a flowchart or nested switch statement. Easy to explain to a non-technical stakeholder, but memorizes data if too deep.</div>
 </div>
 
 <div class="card" data-term="Random Forest" data-section="models">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Random Forest</div>
   <div class="definition">100-1000 decision trees on random data subsets. Final prediction = majority vote. Ensemble method. Resistant to overfitting.</div>
-  <div class="analogy">>> Like 100 microservice instances, each seeing slightly different data, taking consensus. More reliable than one.</div>
+  <div class="analogy">>> Like 100 microservice replicas each seeing slightly different traffic, then taking a consensus vote. More reliable than any single replica.</div>
   <div class="tags"><span class="tag critical">CRITICAL</span></div>
 </div>
 
 <div class="card" data-term="XGBoost" data-section="models">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">XGBoost / Gradient Boosting</div>
-  <div class="definition">Trees built SEQUENTIALLY: each tree fixes errors of previous. Tree 2 predicts ERRORS of Tree 1. Most used model in industry & Kaggle.</div>
-  <div class="analogy">>> Like iterative bug fixing: each deployment fixes bugs from the previous one. Each tree patches what the last got wrong.</div>
-  <div class="tags"><span class="tag critical">CRITICAL</span></div>
+  <div class="definition">Trees built SEQUENTIALLY: each tree fixes errors of the previous one. Tree 2 predicts the residual errors of Tree 1. Industry standard for tabular data.</div>
+  <div class="analogy">>> Like iterative hotfix deployments: each release patches exactly what the previous one got wrong. High accuracy, needs careful tuning.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span><span class="tag interview">INTERVIEW</span></div>
 </div>
 
 <div class="comparison">
-  <div class="col"><h4>Random Forest (Bagging)</h4><p>Trees trained INDEPENDENTLY on random subsets. Vote at the end. Good default, hard to mess up.</p></div>
-  <div class="col"><h4>XGBoost (Boosting)</h4><p>Trees trained SEQUENTIALLY, each fixing previous errors. Higher accuracy, needs more tuning.</p></div>
+  <div class="col"><h4>Random Forest (Bagging)</h4><p>Trees trained INDEPENDENTLY on random subsets. Vote at the end. Good default, hard to mess up. Lower variance.</p></div>
+  <div class="col"><h4>XGBoost (Boosting)</h4><p>Trees trained SEQUENTIALLY, each fixing previous errors. Higher accuracy but needs more tuning. Watch for overfitting.</p></div>
 </div>
 
 </div>
 
 <!-- ==================== DEEP LEARNING ==================== -->
 <div class="section" id="deeplearning">
-<h2 class="section-title">4. Deep Learning & Neural Networks</h2>
+<h2 class="section-title">4. Deep Learning &amp; Neural Networks</h2>
 
 <div class="diagram"><span class="highlight">Neural Network:</span>
 
@@ -416,46 +442,61 @@
 <div class="card" data-term="Neural Network" data-section="deeplearning">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Neural Network</div>
-  <div class="definition">Layers of neurons. Input -> hidden layers -> output. Each neuron: weighted sum + activation function.</div>
-  <div class="analogy">>> Like a multi-layer microservice pipeline. Data flows through each layer, getting transformed.</div>
+  <div class="definition">Layers of neurons. Input -> hidden layers -> output. Each neuron: weighted sum + activation function. Deep networks have many hidden layers.</div>
+  <div class="analogy">>> Like a multi-layer microservice pipeline. Data flows through each service layer, getting transformed and enriched at each step.</div>
 </div>
 
 <div class="card" data-term="Backpropagation" data-section="deeplearning">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Backpropagation</div>
-  <div class="definition">After forward pass, calculate loss, then flow error BACKWARDS to compute how much each weight contributed. Then update weights.</div>
-  <div class="analogy">>> Like distributed tracing in reverse: error traced back through each service to find which component caused it.</div>
+  <div class="definition">After forward pass, calculate loss, then flow error BACKWARDS using chain rule to compute each weight's contribution. Then update weights proportionally.</div>
+  <div class="analogy">>> Like distributed tracing in reverse: an error is traced back through each service layer to find which component caused it, then each is patched proportionally.</div>
   <div class="tags"><span class="tag critical">CRITICAL</span></div>
 </div>
 
 <div class="card" data-term="ReLU" data-section="deeplearning">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">ReLU (Rectified Linear Unit)</div>
-  <div class="definition">max(0, x). If positive, pass through. If negative, output 0. Most common activation for hidden layers.</div>
+  <div class="definition">max(0, x). If positive, pass through unchanged. If negative, output 0. Most common activation function for hidden layers.</div>
   <div class="example">ReLU(5) = 5, ReLU(-3) = 0, ReLU(0.5) = 0.5</div>
 </div>
 
 <div class="card" data-term="Sigmoid" data-section="deeplearning">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Sigmoid</div>
-  <div class="definition">1 / (1 + e^(-x)). Squashes any number to 0-1. Used for binary classification output.</div>
-  <div class="analogy">>> YOU KNOW THIS from Elara: converts z-scores into 0-100 health scores. Same function!</div>
-  <div class="tags"><span class="tag elara">Elara</span><span class="tag critical">CRITICAL</span></div>
+  <div class="definition">1 / (1 + e^(-x)). Squashes any real number to the range 0-1. Used for binary classification output layers.</div>
+  <div class="analogy">>> Any score, no matter how large or negative, gets compressed into a 0-100 percentage. Natural output for "probability of class 1".</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span></div>
 </div>
 
 <div class="card" data-term="Dropout" data-section="deeplearning">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Dropout</div>
-  <div class="definition">During training, randomly set 30% of neurons to 0. Forces resilience. Turned OFF during inference.</div>
-  <div class="analogy">>> Like chaos engineering: randomly killing pods during testing. Disabled in production.</div>
+  <div class="definition">During training, randomly set a fraction (typically 20-50%) of neurons to 0. Forces the network to be resilient. Turned OFF during inference.</div>
+  <div class="analogy">>> Like chaos engineering in production: randomly killing pods during load testing forces the system to build in redundancy. Disabled on the final deployment.</div>
 </div>
 
 <div class="card" data-term="Transfer Learning" data-section="deeplearning">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Transfer Learning</div>
-  <div class="definition">Using a model trained on one task as starting point for another. The pretrained model already knows useful features.</div>
-  <div class="analogy">>> Your EEG project: CLIP trained on 400M internet images works on EEG spectrograms. Like reusing a payment service across projects.</div>
-  <div class="tags"><span class="tag eeg">EEG Project</span></div>
+  <div class="definition">Starting from a model pretrained on a large dataset (ImageNet, large text corpus) and fine-tuning on your specific task. Dramatically reduces training time and data needs.</div>
+  <div class="analogy">>> Like forking a mature open-source library instead of writing from scratch. The pretrained model already knows low-level features; you just adapt the top layers.</div>
+  <div class="tags"><span class="tag interview">INTERVIEW</span><span class="tag production">PRODUCTION</span></div>
+</div>
+
+<div class="card" data-term="CNN" data-section="deeplearning">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Convolutional Neural Network (CNN)</div>
+  <div class="definition">Specialized architecture for images. Convolutional layers detect local patterns (edges, shapes) using sliding filters. Pooling reduces spatial dimensions.</div>
+  <div class="analogy">>> Like sliding a pattern-matching function across a 2D grid — each filter is a small detector that fires when it sees its pattern anywhere in the image.</div>
+  <div class="tags"><span class="tag interview">INTERVIEW</span></div>
+</div>
+
+<div class="card" data-term="Batch Normalization" data-section="deeplearning">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Batch Normalization</div>
+  <div class="definition">Normalizes activations within each mini-batch during training. Stabilizes and speeds up training. Reduces sensitivity to weight initialization.</div>
+  <div class="analogy">>> Like standardizing API response formats across microservices — ensures each layer receives consistently-scaled inputs, preventing training instability.</div>
 </div>
 
 </div>
@@ -467,33 +508,56 @@
 <div class="card" data-term="Tokenization" data-section="nlp">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Tokenization</div>
-  <div class="definition">Breaking text into tokens. "unhappiness" -> ["un", "happi", "ness"]. BPE most common. LLMs see tokens, not words.</div>
-  <div class="analogy">>> Like splitting a URL into path segments. The model processes tokens, not raw strings.</div>
+  <div class="definition">Breaking text into tokens. "unhappiness" -> ["un", "happi", "ness"]. BPE (Byte-Pair Encoding) most common in modern LLMs. Models see tokens, not words.</div>
+  <div class="analogy">>> Like splitting a URL into path segments. The model processes integer token IDs; raw text is the human-readable abstraction.</div>
 </div>
 
 <div class="card" data-term="Embedding" data-section="nlp">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Embedding</div>
-  <div class="definition">Dense vector representation. Similar items = similar vectors. "king" - "man" + "woman" ~ "queen". Typically 512-768 dimensions.</div>
-  <div class="analogy">>> Like hashing but meaningful: similar inputs produce similar outputs. A 512-dim fingerprint of meaning.</div>
+  <div class="definition">Dense vector representation. Similar items map to similar vectors. "king" - "man" + "woman" ≈ "queen". Typically 512-1536 dimensions for modern models.</div>
+  <div class="analogy">>> Like a content-aware hash: similar inputs produce similar outputs (unlike a cryptographic hash). A 768-dim fingerprint that encodes semantic meaning.</div>
   <div class="tags"><span class="tag critical">CRITICAL</span></div>
 </div>
 
 <div class="card" data-term="Cosine Similarity" data-section="nlp">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Cosine Similarity</div>
-  <div class="definition">Measures angle between two vectors. cos(A,B) = (A.B) / (|A|*|B|). 1.0 = identical, 0 = unrelated. Core of RAG retrieval.</div>
-  <div class="example">cos([1,0], [0,1]) = 0 (perpendicular, unrelated)
-cos([1,0], [1,0]) = 1.0 (identical)
+  <div class="definition">Measures the angle between two vectors. cos(A,B) = (A·B) / (|A|*|B|). 1.0 = identical direction, 0 = orthogonal (unrelated). Core of RAG retrieval.</div>
+  <div class="example">cos([1,0], [0,1]) = 0.0  (perpendicular, unrelated)
+cos([1,0], [1,0]) = 1.0  (identical)
 cos([1,1], [1,0]) = 0.71 (somewhat similar)</div>
   <div class="tags"><span class="tag critical">CRITICAL</span></div>
+</div>
+
+<div class="card" data-term="TF-IDF" data-section="nlp">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">TF-IDF (Term Frequency-Inverse Document Frequency)</div>
+  <div class="definition">Classic term-weighting for information retrieval. TF: how often a word appears in a document. IDF: penalizes common words ("the", "is"). High TF-IDF = rare word that appears often in this doc.</div>
+  <div class="analogy">>> Like finding a microservice's unique signature: a word that appears 10x in one doc but rarely elsewhere is a strong discriminator — common words like "the" are noise.</div>
+  <div class="tags"><span class="tag interview">INTERVIEW</span></div>
+</div>
+
+<div class="card" data-term="BM25" data-section="nlp">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">BM25</div>
+  <div class="definition">Probabilistic extension of TF-IDF. Industry standard for keyword/lexical search. Accounts for document length. Used in Elasticsearch by default.</div>
+  <div class="analogy">>> The workhorse behind most production search systems before neural embeddings. Fast, no GPU, interpretable. Still competitive for exact keyword queries.</div>
+  <div class="tags"><span class="tag interview">INTERVIEW</span><span class="tag production">PRODUCTION</span></div>
+</div>
+
+<div class="card" data-term="Named Entity Recognition" data-section="nlp">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Named Entity Recognition (NER)</div>
+  <div class="definition">Identifying and classifying named entities in text: people, organizations, locations, dates, monetary values.</div>
+  <div class="analogy">>> Like a regex parser but learned from data. "Apple reported £50B revenue in London" → Apple=ORG, £50B=MONEY, London=LOC.</div>
 </div>
 
 </div>
 
 <!-- ==================== TRANSFORMERS ==================== -->
 <div class="section" id="transformers">
-<h2 class="section-title">6. Transformers & Attention</h2>
+<h2 class="section-title">6. Transformers &amp; Attention</h2>
 
 <div class="diagram"><span class="highlight">Self-Attention: How Transformers Understand Context</span>
 
@@ -518,29 +582,44 @@ cos([1,1], [1,0]) = 0.71 (somewhat similar)</div>
 <div class="card" data-term="Transformer" data-section="transformers">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Transformer</div>
-  <div class="definition">Architecture behind ALL modern LLMs. Processes all words simultaneously using self-attention. Replaced slow RNNs/LSTMs.</div>
-  <div class="analogy">>> Every LLM you use (Claude at Elara, Gemini in NeutroFi) is a Transformer. THE architecture of modern AI.</div>
+  <div class="definition">Architecture behind all modern LLMs. Processes all tokens simultaneously using self-attention. Replaced sequential RNNs/LSTMs. Introduced in "Attention Is All You Need" (2017).</div>
+  <div class="analogy">>> GPT, Claude, Gemini, Llama — all Transformers under the hood. THE architecture of modern AI. Understanding it is non-negotiable for ML interviews.</div>
   <div class="tags"><span class="tag critical">CRITICAL</span></div>
 </div>
 
 <div class="card" data-term="Self-Attention" data-section="transformers">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Self-Attention</div>
-  <div class="definition">Each word looks at every other word to understand context. Computed using Query, Key, Value vectors.</div>
-  <div class="analogy">>> Like a service that checks ALL other services before responding, weighing which inputs matter most.</div>
+  <div class="definition">Each token attends to all other tokens to build context-aware representations. Uses Query, Key, Value projections. Runs in parallel across all positions.</div>
+  <div class="analogy">>> Like a service that queries every other service in the cluster before building its response, weighting the most relevant ones more heavily.</div>
   <div class="tags"><span class="tag critical">CRITICAL</span></div>
 </div>
 
+<div class="card" data-term="Multi-Head Attention" data-section="transformers">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Multi-Head Attention</div>
+  <div class="definition">Run attention multiple times in parallel with different learned projections (heads). Each head can capture different relationship types. Outputs are concatenated.</div>
+  <div class="analogy">>> Like running multiple independent feature extractors in parallel — one head might focus on syntax, another on coreference, another on semantics.</div>
+  <div class="tags"><span class="tag interview">INTERVIEW</span></div>
+</div>
+
+<div class="card" data-term="Positional Encoding" data-section="transformers">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Positional Encoding</div>
+  <div class="definition">Transformers have no inherent sense of order. Positional encodings inject position information into token embeddings so the model knows word order.</div>
+  <div class="analogy">>> Like adding a sequence number to messages in a distributed queue. Without it, the model would treat "dog bites man" and "man bites dog" identically.</div>
+</div>
+
 <div class="comparison">
-  <div class="col"><h4>Encoder (BERT)</h4><p>Reads text bidirectionally. Creates rich representations. Best for: classification, NER, understanding.</p></div>
-  <div class="col"><h4>Decoder (GPT/Claude)</h4><p>Generates text one token at a time (left to right). Best for: text generation, conversation.</p></div>
+  <div class="col"><h4>Encoder (BERT)</h4><p>Reads text bidirectionally. Creates rich contextual representations. Best for: classification, NER, semantic search, understanding tasks.</p></div>
+  <div class="col"><h4>Decoder (GPT/LLaMA)</h4><p>Generates text autoregressively, one token at a time (left to right). Best for: text generation, chat, completion, summarization.</p></div>
 </div>
 
 </div>
 
 <!-- ==================== LLMs ==================== -->
 <div class="section" id="llms">
-<h2 class="section-title">7. LLMs & Generative AI</h2>
+<h2 class="section-title">7. LLMs &amp; Generative AI</h2>
 
 <div class="diagram"><span class="highlight">How an LLM Generates Text:</span>
 
@@ -566,215 +645,377 @@ cos([1,1], [1,0]) = 0.71 (somewhat similar)</div>
 <div class="card" data-term="LLM" data-section="llms">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Large Language Model (LLM)</div>
-  <div class="definition">Very large transformer (billions of parameters) trained to predict next token on massive text data.</div>
-  <div class="analogy">>> Claude Haiku (Elara) and Gemini (NeutroFi) are both LLMs. They just predict the next word, really fast, really well.</div>
-  <div class="tags"><span class="tag critical">CRITICAL</span><span class="tag elara">Elara</span><span class="tag neutrofi">NeutroFi</span></div>
+  <div class="definition">Very large transformer (billions of parameters) pretrained on massive text data to predict the next token. Forms the basis of modern AI assistants.</div>
+  <div class="analogy">>> GPT-4, Claude, Gemini, LLaMA are all LLMs. They just predict the next word — extremely fast, at massive scale, with emergent reasoning capabilities.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span></div>
 </div>
 
 <div class="card" data-term="Temperature" data-section="llms">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Temperature</div>
-  <div class="definition">Controls randomness. 0 = deterministic (always pick highest probability). 1+ = creative/random. Divides logits before softmax.</div>
-  <div class="analogy">>> Your NeutroFi uses temp=0.3 (focused). Higher = more creative but less reliable.</div>
-  <div class="tags"><span class="tag critical">CRITICAL</span><span class="tag neutrofi">NeutroFi</span></div>
+  <div class="definition">Controls output randomness. 0 = deterministic (always highest probability token). 1+ = creative/random. Technically divides logits before softmax.</div>
+  <div class="analogy">>> Low temperature for factual tasks (Q&amp;A, code generation). Higher temperature for brainstorming, creative writing. Production systems for finance or compliance: use temp 0.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span><span class="tag interview">INTERVIEW</span></div>
 </div>
 
 <div class="card" data-term="Prompt Engineering" data-section="llms">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Prompt Engineering</div>
-  <div class="definition">Designing prompts for better output. Zero-shot (no examples), few-shot (with examples), chain-of-thought (step by step).</div>
-  <div class="analogy">>> You do this at Elara: designing prompt templates for signal classification.</div>
-  <div class="tags"><span class="tag critical">CRITICAL</span><span class="tag elara">Elara</span></div>
+  <div class="definition">Designing prompts for better output. Zero-shot (no examples), few-shot (2-5 examples), chain-of-thought (step-by-step reasoning), system prompts.</div>
+  <div class="analogy">>> Like writing a well-structured API contract: the more precisely you specify input format and expected output, the more reliably the LLM performs.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span><span class="tag interview">INTERVIEW</span></div>
 </div>
 
 <div class="card" data-term="Hallucination" data-section="llms">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Hallucination</div>
-  <div class="definition">LLM generates plausible but factually incorrect information. A fundamental challenge.</div>
-  <div class="analogy">>> This is why NeutroFi's risk manager uses rules, not LLM output. And why RAG grounds responses in real docs.</div>
-  <div class="tags"><span class="tag neutrofi">NeutroFi</span></div>
+  <div class="definition">LLM generates confident but factually incorrect content. A fundamental challenge with autoregressive models. Mitigated by RAG, grounding, and output validation.</div>
+  <div class="analogy">>> Like a microservice that returns a 200 OK with plausible-looking but wrong data. No exception thrown — you need explicit validation to catch it.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span><span class="tag uk-market">UK MARKET</span></div>
+</div>
+
+<div class="card" data-term="Context Window" data-section="llms">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Context Window</div>
+  <div class="definition">Maximum number of tokens the model can "see" at once. GPT-4: 128K, Claude 3: 200K. Beyond this, information is not available to the model.</div>
+  <div class="analogy">>> Like RAM for the model's working memory. Larger context = higher cost and latency. Production systems must chunk and summarize long documents strategically.</div>
+  <div class="tags"><span class="tag production">PRODUCTION</span></div>
+</div>
+
+<div class="card" data-term="Structured Output" data-section="llms">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Structured Output / JSON Mode</div>
+  <div class="definition">Constraining LLM output to valid JSON or a defined schema. Avoids brittle regex parsing. Modern APIs (OpenAI, Anthropic) support this natively.</div>
+  <div class="analogy">>> Like enforcing a response DTO instead of free-text. Your downstream service can safely deserialize the response without try/except around JSON parsing.</div>
+  <div class="tags"><span class="tag production">PRODUCTION</span><span class="tag interview">INTERVIEW</span></div>
+</div>
+
+<div class="card" data-term="Guardrails for LLMs" data-section="llms">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Guardrails for LLMs</div>
+  <div class="definition">Input/output validation layers around LLM calls. Check for harmful content, off-topic responses, PII leakage, schema violations. Can be rule-based or classifier-based.</div>
+  <div class="analogy">>> Like middleware in an Express or FastAPI app: every request passes through validation before reaching the handler, and every response is checked before returning to the client.</div>
+  <div class="tags"><span class="tag production">PRODUCTION</span><span class="tag uk-market">UK MARKET</span></div>
 </div>
 
 <div class="comparison">
-  <div class="col"><h4>Fine-tuning</h4><p>Change model behavior. Needs training data + compute. Risk: catastrophic forgetting. Best for: specific style/format.</p></div>
-  <div class="col"><h4>RAG</h4><p>Add external knowledge. No training needed. Best for: company docs, up-to-date info. Bottleneck: retrieval quality.</p></div>
+  <div class="col"><h4>Fine-tuning</h4><p>Change model behavior. Needs labeled training data + compute. Risk: catastrophic forgetting. Best for: specific style, format, domain terminology.</p></div>
+  <div class="col"><h4>RAG</h4><p>Add external knowledge at inference. No training needed, up-to-date info. Bottleneck: retrieval quality. Best for: company docs, knowledge bases, dynamic data.</p></div>
 </div>
 
 </div>
 
 <!-- ==================== RAG & AGENTS ==================== -->
 <div class="section" id="rag">
-<h2 class="section-title">8. RAG & Agentic AI</h2>
+<h2 class="section-title">8. RAG &amp; Agentic AI</h2>
 
 <div class="diagram"><span class="highlight">RAG Pipeline (Retrieval Augmented Generation):</span>
 
   <span class="yellow">OFFLINE (once):</span>
   Documents ──> <span class="purple">Chunk</span> (500 tokens) ──> <span class="purple">Embed</span> (sentence-transformers)
-                                            ──> <span class="green">Store in Vector DB</span> (FAISS)
+                                            ──> <span class="green">Store in Vector DB</span> (FAISS / Pinecone)
 
   <span class="yellow">ONLINE (per query):</span>
   User Question ──> <span class="purple">Embed</span> ──> <span class="green">Search Vector DB</span> (cosine similarity)
-                               ──> Top 3 chunks retrieved
+                               ──> Top 3-5 chunks retrieved
                                ──> Build prompt: [context + question]
                                ──> <span class="highlight">LLM generates grounded answer</span>
 
-  <span class="green">NOTE: Elara does NOT use RAG. But you must know it for interviews.</span></div>
+  <span class="green">Hybrid: BM25 keyword search + dense vector search + RRF reranking</span></div>
 
 <div class="card" data-term="RAG" data-section="rag">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">RAG (Retrieval Augmented Generation)</div>
-  <div class="definition">Embed docs -> store in vector DB -> embed query -> find similar chunks -> pass to LLM -> grounded answer. Reduces hallucination.</div>
-  <div class="analogy">>> Like searching Stack Overflow before answering a question, instead of guessing from memory.</div>
-  <div class="tags"><span class="tag critical">CRITICAL</span></div>
+  <div class="definition">Embed docs -> store in vector DB -> embed query -> find similar chunks -> pass to LLM -> grounded answer. Reduces hallucination without fine-tuning.</div>
+  <div class="analogy">>> Like searching Stack Overflow or internal docs before answering a question, instead of guessing from memory. The LLM becomes a smart formatter of retrieved facts.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span><span class="tag interview">INTERVIEW</span></div>
 </div>
 
 <div class="card" data-term="Vector Database" data-section="rag">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
-  <div class="term">Vector Database</div>
-  <div class="definition">DB optimized for similarity search on embeddings. FAISS (local), Pinecone, ChromaDB (managed). Uses cosine similarity.</div>
-  <div class="analogy">>> Like a database with "find similar" instead of exact match.</div>
+  <div class="term">Vector Database — FAISS vs Pinecone vs ChromaDB vs Weaviate</div>
+  <div class="definition">Databases optimized for approximate nearest-neighbor search on high-dimensional embeddings. Each has different trade-offs for production use.</div>
+  <div class="analogy">>> Like choosing a database engine: SQLite vs PostgreSQL vs managed RDS. Pick based on scale, operational overhead, and query needs.</div>
+  <div class="example">FAISS     — local, no server, fastest for prototype/batch; no persistence by default
+Pinecone  — fully managed, serverless, easy production; costs money
+ChromaDB  — lightweight managed, good for small-medium projects, open source
+Weaviate  — GraphQL API, built-in hybrid search, good for production self-host</div>
+  <div class="tags"><span class="tag interview">INTERVIEW</span><span class="tag production">PRODUCTION</span></div>
+</div>
+
+<div class="card" data-term="Hybrid Search" data-section="rag">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Hybrid Search / Reciprocal Rank Fusion (RRF)</div>
+  <div class="definition">Combining dense vector search (semantic similarity) with sparse keyword search (BM25). RRF merges ranked result lists without needing score normalization.</div>
+  <div class="analogy">>> Like running two different search algorithms and combining their rankings. RRF gives each result a score of 1/(rank + 60), summed across both lists — simple and effective.</div>
+  <div class="tags"><span class="tag interview">INTERVIEW</span><span class="tag production">PRODUCTION</span></div>
 </div>
 
 <div class="card" data-term="Agent" data-section="rag">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Agent</div>
-  <div class="definition">LLM that can DECIDE what to do and USE TOOLS. Not just text generation - taking actions based on reasoning.</div>
-  <div class="analogy">>> Your NeutroFi: LLM decides to call CoinGecko API, gets data, then generates analysis.</div>
-  <div class="tags"><span class="tag critical">CRITICAL</span><span class="tag neutrofi">NeutroFi</span></div>
+  <div class="definition">LLM that can DECIDE what to do and USE TOOLS to act. Not just text generation — it reasons, selects tools, executes them, and iterates based on results.</div>
+  <div class="analogy">>> Like an automated on-call engineer: it reads the alert, decides which runbook to follow, calls the relevant APIs, checks the output, and either resolves or escalates.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span><span class="tag interview">INTERVIEW</span></div>
+</div>
+
+<div class="card" data-term="Function Calling" data-section="rag">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Function Calling / Tool Use</div>
+  <div class="definition">Define a set of tools (functions with JSON schemas) the LLM can invoke. The model returns a tool call with arguments; your code executes it and returns results to the model.</div>
+  <div class="analogy">>> Like defining an OpenAPI spec for the LLM. The model picks the right endpoint and constructs the correct request body. You handle execution and return the HTTP response.</div>
+  <div class="tags"><span class="tag interview">INTERVIEW</span><span class="tag production">PRODUCTION</span></div>
 </div>
 
 <div class="card" data-term="LangGraph" data-section="rag">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">LangGraph</div>
-  <div class="definition">Graph-based agent workflows. Nodes = steps, edges = connections, state = shared data. More flexible than chains.</div>
-  <div class="analogy">>> Your NeutroFi: StateGraph with 6 nodes. AgentState TypedDict carries data between nodes.</div>
-  <div class="tags"><span class="tag neutrofi">NeutroFi</span></div>
+  <div class="definition">Graph-based framework for building stateful LLM agent workflows. Nodes = steps, edges = conditional transitions, shared state = TypedDict. More controllable than chains.</div>
+  <div class="analogy">>> Like defining a state machine for your agent: each node is a handler, edges are conditional routing rules, and the state object is passed between nodes like a context object.</div>
+  <div class="tags"><span class="tag interview">INTERVIEW</span></div>
 </div>
 
-<div class="card" data-term="Tool Calling" data-section="rag">
+<div class="card" data-term="Chunking Strategy" data-section="rag">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
-  <div class="term">Tool Use / Function Calling</div>
-  <div class="definition">Define tools the LLM can call. LLM decides WHICH tool and with WHAT arguments. You execute and return results.</div>
-  <div class="analogy">>> NeutroFi: llm.bind_tools(tools) with @tool decorator. LLM sees available tools and decides which to call.</div>
-  <div class="tags"><span class="tag neutrofi">NeutroFi</span></div>
+  <div class="term">Chunking Strategy</div>
+  <div class="definition">How you split documents before embedding. Fixed-size (500 tokens), sentence-aware, paragraph-based, or semantic chunking. Chunk overlap (e.g., 50 tokens) prevents context loss at boundaries.</div>
+  <div class="analogy">>> Like pagination in an API: if your page breaks mid-sentence you lose context. Overlap is like returning the last item of page N at the start of page N+1 for continuity.</div>
+  <div class="tags"><span class="tag production">PRODUCTION</span><span class="tag interview">INTERVIEW</span></div>
 </div>
 
 </div>
 
 <!-- ==================== MLOps ==================== -->
 <div class="section" id="mlops">
-<h2 class="section-title">9. MLOps & Production</h2>
+<h2 class="section-title">9. MLOps &amp; Production</h2>
 
-<div class="diagram"><span class="highlight">ML Pipeline (Your Elara IS this):</span>
+<div class="diagram"><span class="highlight">ML Pipeline in Production:</span>
 
   <span class="yellow">Data</span> ──> <span class="purple">Preprocess</span> ──> <span class="purple">Feature Eng</span> ──> <span class="green">Train</span> ──> <span class="green">Evaluate</span> ──> <span class="highlight">Deploy</span> ──> <span class="yellow">Monitor</span>
    │                                                                    │
-   S3                                                               Grafana
-   PST files                                                    CloudWatch
-                                                                 structlog
-
-  <span class="green">Your Elara: ETL -> S3 -> Lambda 6-step -> RDS -> FastAPI -> React</span></div>
+   S3 / Data Warehouse                                            Prometheus
+   Feature Store                                                  Grafana
+   Data Validation                                                Alerts / Retraining</div>
 
 <div class="card" data-term="Batch vs Real-time Inference" data-section="mlops">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Batch vs Real-time Inference</div>
-  <div class="definition">Batch: process large data periodically (your Elara every 2 weeks). Real-time: per-request (&lt;100ms, like fraud detection).</div>
-  <div class="analogy">>> Elara = batch (EventBridge bi-weekly). ThoughtWorks Pushpin = real-time (6s->2s latency).</div>
-  <div class="tags"><span class="tag elara">Elara</span></div>
+  <div class="definition">Batch: process large data on a schedule (nightly or weekly). Real-time: per-request serving (&lt;100ms SLA, like fraud detection or recommendation APIs).</div>
+  <div class="analogy">>> Batch = cron job or Airflow DAG that processes yesterday's data. Real-time = a REST endpoint that must respond before the page loads. Different cost profiles, different infra.</div>
+  <div class="tags"><span class="tag interview">INTERVIEW</span><span class="tag production">PRODUCTION</span></div>
 </div>
 
 <div class="card" data-term="Data Drift" data-section="mlops">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Data Drift</div>
-  <div class="definition">Input data distribution changes over time. Model trained on old data may fail on new patterns.</div>
-  <div class="analogy">>> Like API contract changes: if upstream services change their data format, your downstream service breaks.</div>
-  <div class="tags"><span class="tag critical">CRITICAL</span></div>
+  <div class="definition">Input data distribution shifts over time. A model trained on last year's data may fail silently on today's inputs.</div>
+  <div class="analogy">>> Like an API contract change in an upstream service that nobody told you about. The schema looks the same but the values mean something different now.</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span><span class="tag production">PRODUCTION</span></div>
 </div>
 
 <div class="card" data-term="Model Drift" data-section="mlops">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
-  <div class="term">Model Drift</div>
-  <div class="definition">Model performance degrades over time because the world changes. Need to retrain periodically.</div>
-  <div class="analogy">>> Like a Grafana alert: if your p99 latency suddenly spikes, something changed in the system.</div>
+  <div class="term">Model Drift / Concept Drift</div>
+  <div class="definition">Model performance degrades over time because the underlying relationship between features and labels changes. Requires monitoring and scheduled retraining.</div>
+  <div class="analogy">>> Like a Grafana alert for rising error rate: you need to monitor prediction metrics in production, not just at training time. Set up automated retraining triggers.</div>
+  <div class="tags"><span class="tag production">PRODUCTION</span></div>
+</div>
+
+<div class="card" data-term="Feature Store" data-section="mlops">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Feature Store</div>
+  <div class="definition">Centralized repository for computed features. Ensures training and serving use identical feature pipelines. Prevents training-serving skew. (Feast, Tecton, Vertex AI Feature Store)</div>
+  <div class="analogy">>> Like a shared Redis cache for ML features: instead of every team recomputing "user_30day_spend", it's computed once and served consistently to both training and inference.</div>
+  <div class="tags"><span class="tag production">PRODUCTION</span></div>
 </div>
 
 <div class="card" data-term="Quantization" data-section="mlops">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Quantization</div>
-  <div class="definition">Reduce model precision: 32-bit -> 8-bit. Makes model 4x smaller and faster. Slight quality loss.</div>
-  <div class="analogy">>> Like compressing Docker images. Smaller, faster deployment, minor quality tradeoff.</div>
+  <div class="definition">Reduce model weight precision: FP32 -> INT8 (4x smaller, faster). Post-training quantization (PTQ) or quantization-aware training (QAT). Slight quality tradeoff.</div>
+  <div class="analogy">>> Like compressing Docker images with multi-stage builds: smaller artifacts, faster pulls and deployments, minimal functional difference in most cases.</div>
+  <div class="tags"><span class="tag production">PRODUCTION</span></div>
+</div>
+
+<div class="card" data-term="Kubernetes for ML" data-section="mlops">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Kubernetes for ML / Model Serving</div>
+  <div class="definition">Running models in production at scale. vLLM for high-throughput LLM serving (continuous batching, paged attention). TorchServe for PyTorch model APIs. KServe for Kubernetes-native serving.</div>
+  <div class="analogy">>> vLLM is to LLM serving what NGINX is to web serving: purpose-built for throughput. Continuous batching means multiple requests share a forward pass — dramatically improves GPU utilization.</div>
+  <div class="tags"><span class="tag production">PRODUCTION</span><span class="tag interview">INTERVIEW</span></div>
+</div>
+
+<div class="card" data-term="A/B Testing in ML" data-section="mlops">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">A/B Testing &amp; Shadow Mode</div>
+  <div class="definition">A/B: route traffic between model versions to compare metrics in production. Shadow mode: new model runs in parallel but doesn't affect users — compare outputs before rollout.</div>
+  <div class="analogy">>> Like canary deployments in Kubernetes: route 5% of traffic to the new model, monitor business metrics, roll forward if no regression.</div>
+  <div class="tags"><span class="tag production">PRODUCTION</span><span class="tag interview">INTERVIEW</span></div>
+</div>
+
+<div class="card" data-term="Model Registry" data-section="mlops">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Model Registry &amp; MLflow</div>
+  <div class="definition">Centralized store for trained models, versions, metrics, and parameters. MLflow tracks experiments, logs artifacts, manages model lifecycle (staging/production/archived).</div>
+  <div class="analogy">>> Like a container registry (Docker Hub / ECR) but for ML models. Every trained model is a versioned artifact with metadata, reproducible from logged parameters.</div>
+  <div class="tags"><span class="tag production">PRODUCTION</span></div>
+</div>
+
+</div>
+
+<!-- ==================== ETHICS & UK ==================== -->
+<div class="section" id="ethics">
+<h2 class="section-title">10. Ethics, Fairness &amp; UK Market</h2>
+
+<div class="card" data-term="GDPR and Data Privacy" data-section="ethics">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">GDPR &amp; Data Privacy in ML</div>
+  <div class="definition">UK GDPR / EU GDPR compliance requirements for ML systems: lawful basis for processing, data minimization, right to erasure (right to be forgotten), purpose limitation.</div>
+  <div class="analogy">>> GDPR impacts your training data pipeline: you cannot train on personal data without a lawful basis. "Right to erasure" means you may need to retrain or implement machine unlearning.</div>
+  <div class="tags"><span class="tag uk-market">UK MARKET</span><span class="tag critical">CRITICAL</span></div>
+</div>
+
+<div class="card" data-term="Responsible AI" data-section="ethics">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Responsible AI / AI Ethics</div>
+  <div class="definition">Framework for building AI that is safe, fair, transparent, and accountable. Pillars: fairness, reliability, privacy, transparency, inclusiveness, accountability. UK government's AI Safety Institute focuses on this.</div>
+  <div class="analogy">>> Like software engineering's secure-by-design principle, but applied to model behavior and societal impact. UK employers increasingly ask about this — especially in finance, health, and public sector.</div>
+  <div class="tags"><span class="tag uk-market">UK MARKET</span><span class="tag interview">INTERVIEW</span></div>
+</div>
+
+<div class="card" data-term="Explainability vs Interpretability" data-section="ethics">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Explainability vs Interpretability</div>
+  <div class="definition">Interpretability: model structure is inherently understandable (decision trees, linear models). Explainability: black-box model explained post-hoc (SHAP, LIME, attention maps, GradCAM).</div>
+  <div class="analogy">>> Interpretable = open-source code you can read. Explainable = black-box service with good logging and observability. UK finance (FCA) requires explainable credit decisions — "why was this loan rejected?"</div>
+  <div class="tags"><span class="tag uk-market">UK MARKET</span><span class="tag interview">INTERVIEW</span></div>
+</div>
+
+<div class="card" data-term="SHAP" data-section="ethics">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">SHAP (SHapley Additive exPlanations)</div>
+  <div class="definition">Assigns each feature a contribution value for a specific prediction. Based on game-theoretic Shapley values. Consistent and locally accurate.</div>
+  <div class="analogy">>> Like a P&amp;L attribution report: instead of just the bottom line, you see how much each input feature contributed positively or negatively to this specific prediction.</div>
+  <div class="tags"><span class="tag interview">INTERVIEW</span><span class="tag uk-market">UK MARKET</span></div>
+</div>
+
+<div class="card" data-term="Model Cards" data-section="ethics">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Model Cards</div>
+  <div class="definition">Structured documentation for ML models: intended use, out-of-scope uses, evaluation results across demographic groups, training data description, limitations. Google introduced; increasingly standard.</div>
+  <div class="analogy">>> Like a technical data sheet / README for a model artifact. UK public sector and large enterprises increasingly require these before deploying ML systems.</div>
+  <div class="tags"><span class="tag uk-market">UK MARKET</span><span class="tag production">PRODUCTION</span></div>
+</div>
+
+<div class="card" data-term="Bias and Fairness" data-section="ethics">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Bias &amp; Fairness in ML</div>
+  <div class="definition">Fairness metrics: demographic parity (equal positive rate across groups), equalized odds (equal TPR/FPR), calibration. Bias sources: historical data, label quality, feature proxies.</div>
+  <div class="analogy">>> A hiring model trained on historical promotions learns to replicate past gender bias. Auditing for fairness means checking whether error rates differ systematically across protected groups.</div>
+  <div class="tags"><span class="tag uk-market">UK MARKET</span><span class="tag interview">INTERVIEW</span></div>
+</div>
+
+<div class="card" data-term="UK AI Safety Institute" data-section="ethics">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">UK AI Safety Institute / AI Act Awareness</div>
+  <div class="definition">UK established the world's first AI Safety Institute (2023). EU AI Act classifies AI by risk level: unacceptable (banned), high-risk (strict requirements), limited-risk, minimal risk.</div>
+  <div class="analogy">>> High-risk AI in UK/EU (healthcare, credit scoring, hiring) requires conformity assessments, logging, human oversight — similar to how medical devices need CE marking and rigorous documentation.</div>
+  <div class="tags"><span class="tag uk-market">UK MARKET</span><span class="tag interview">INTERVIEW</span></div>
 </div>
 
 </div>
 
 <!-- ==================== MATH ==================== -->
 <div class="section" id="math">
-<h2 class="section-title">10. Math Essentials</h2>
+<h2 class="section-title">11. Math Essentials</h2>
 
 <div class="card" data-term="Vector" data-section="math">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Vector</div>
-  <div class="definition">A list of numbers: [3, 4, 5]. Embeddings are high-dimensional vectors (512-dim). Core of all ML.</div>
-  <div class="example">[3, 4] is a 2D vector. A 512-dim embedding is just a list of 512 floats.</div>
+  <div class="definition">A list of numbers: [3, 4, 5]. Embeddings are high-dimensional vectors (768-1536 dims). Core data structure of all ML.</div>
+  <div class="example">[3, 4] is a 2D vector. A 768-dim embedding is just a list of 768 floats in memory.</div>
 </div>
 
 <div class="card" data-term="Dot Product" data-section="math">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
   <div class="term">Dot Product</div>
-  <div class="definition">Multiply elements and sum: [1,2,3] . [4,5,6] = 4+10+18 = 32. Core of attention and similarity.</div>
+  <div class="definition">Multiply corresponding elements and sum: [1,2,3] · [4,5,6] = 4+10+18 = 32. Core operation in attention mechanisms and similarity computation.</div>
   <div class="example">np.dot([1,2,3], [4,5,6]) = 32</div>
 </div>
 
 <div class="card" data-term="Standard Deviation" data-section="math">
   <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
-  <div class="term">Standard Deviation</div>
-  <div class="definition">How spread out values are from the mean. Used in z-score: z = (value - mean) / std.</div>
-  <div class="analogy">>> You use this in Elara: baseline_std is how much signal counts typically vary.</div>
-  <div class="tags"><span class="tag elara">Elara</span></div>
+  <div class="term">Standard Deviation &amp; Z-Score</div>
+  <div class="definition">Standard deviation measures spread from the mean. Z-score: z = (value - mean) / std. Tells you how many standard deviations a value is from the norm.</div>
+  <div class="analogy">>> Like a p-value for outlier detection: a z-score of 3 means this value is 3 standard deviations above normal — likely an anomaly worth flagging.</div>
+</div>
+
+<div class="card" data-term="Softmax" data-section="math">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Softmax</div>
+  <div class="definition">Converts a vector of arbitrary numbers into a probability distribution that sums to 1.0. Used in multi-class classification and attention.</div>
+  <div class="example">softmax([2.0, 1.0, 0.1]) = [0.71, 0.26, 0.09]  (sums to 1.0)</div>
+  <div class="tags"><span class="tag critical">CRITICAL</span></div>
+</div>
+
+<div class="card" data-term="Matrix Multiplication" data-section="math">
+  <button class="master-btn" onclick="toggleMaster(this)">&#10003;</button>
+  <div class="term">Matrix Multiplication</div>
+  <div class="definition">Core operation in neural networks. Every forward pass is largely matrix multiplications. Shape rules: (m, n) × (n, p) = (m, p). GPUs are optimized for this.</div>
+  <div class="analogy">>> Like bulk SQL joins: instead of one query at a time, you batch thousands of dot products in a single GPU kernel. Understanding shapes prevents runtime errors.</div>
 </div>
 
 </div>
 
-<!-- ==================== YOUR PROJECTS ==================== -->
-<div class="section" id="projects">
-<h2 class="section-title">11. Your Projects - Interview Pitches</h2>
+<!-- ==================== INTERVIEW PREPARATION ==================== -->
+<div class="section" id="interview">
+<h2 class="section-title">12. Interview Preparation</h2>
 
 <div class="pitch-card">
-  <h3>ELARA</h3>
-  <div class="time">5-minute pitch</div>
-  <p><strong>Problem:</strong> Employee disengagement costs UK ~&pound;52B/yr. Detection via surveys takes 12 weeks.</p>
-  <p><strong>Solution:</strong> NLP pipeline analyzing Teams messages every 2 weeks. 13 signals, 6 health dimensions.</p>
-  <p><strong>How:</strong> Claude Haiku classifies signals -> z-score normalization -> sigmoid (0-100) -> pattern detection (flags/streaks) -> coaching.</p>
-  <p><strong>Scale:</strong> 94K messages, 6-step Lambda (4GB, 15min timeout), error isolation per vital/org.</p>
-  <p><strong>Infra:</strong> S3, Lambda, RDS, EventBridge, App Runner, Terraform.</p>
-  <p><strong>Impact:</strong> 10 weeks earlier detection than quarterly surveys.</p>
-  <p><strong>Improve:</strong> Add caching, prompt versioning, A/B testing, token tracking.</p>
+  <h3>STAR Format for ML Projects</h3>
+  <div class="time">Use this structure for any project question</div>
+  <p><strong>Situation:</strong> Context — what was the business problem or technical challenge? What system or product was involved?</p>
+  <p><strong>Task:</strong> What were you specifically responsible for? What did you own end-to-end?</p>
+  <p><strong>Action:</strong> What technical decisions did you make and why? What alternatives did you consider? What trade-offs did you accept?</p>
+  <p><strong>Result:</strong> Quantified outcome — latency improvement, accuracy gain, cost reduction, business impact. If no metric, explain why and what proxy you used.</p>
+  <p><strong>Tip:</strong> End every project story with what you would improve given more time. It shows awareness and continued thinking.</p>
 </div>
 
 <div class="pitch-card">
-  <h3>NEUTROFI</h3>
-  <div class="time">3-minute pitch</div>
-  <p><strong>Problem:</strong> Crypto investors face info overload across news, exchanges, Reddit, charts.</p>
-  <p><strong>Solution:</strong> 6-agent LangGraph pipeline: specialized LLM agents + rule-based risk guardrails -> personalized Buy/Hold/Sell.</p>
-  <p><strong>Key Design:</strong> Hybrid AI + rules. Risk manager applies deterministic guardrails. New buyers need >0.8 confidence.</p>
-  <p><strong>Stack:</strong> LangGraph, LangChain, Gemini 1.5 Flash, tool-calling, Streamlit.</p>
-  <p><strong>Improve:</strong> Parallelize first 4 agents, add caching, structured output over regex.</p>
+  <h3>Common ML System Design Questions</h3>
+  <div class="time">Frequently asked in UK ML Engineer interviews</div>
+  <p><strong>1. Design a recommendation system</strong> — Cover: data pipeline, feature engineering, candidate generation (ANN/embedding), ranking model, A/B testing, monitoring for CTR/diversity.</p>
+  <p><strong>2. Design a fraud detection system</strong> — Cover: real-time vs batch, feature store, imbalanced classes, threshold tuning, explainability for compliance, feedback loops.</p>
+  <p><strong>3. Design a RAG-based Q&amp;A system</strong> — Cover: chunking, embedding model choice, vector DB selection, hybrid search, reranking, context window limits, hallucination guardrails.</p>
+  <p><strong>4. How do you monitor a model in production?</strong> — Cover: data drift detection, prediction distribution monitoring, business KPIs, alerting thresholds, retraining triggers.</p>
 </div>
 
 <div class="pitch-card">
-  <h3>EEG EMOTION CLASSIFICATION</h3>
-  <div class="time">2-minute pitch</div>
-  <p><strong>Problem:</strong> Cross-subject EEG emotion recognition fails due to brain variability.</p>
-  <p><strong>Key Insight:</strong> CNN got 76% accuracy but F1=0.013 (predicts majority class). CLIP got 24% accuracy but F1=0.345 (actually works). 27x improvement.</p>
-  <p><strong>Techniques:</strong> LOSO cross-validation, SMOTE, focal loss, threshold optimization, GradCAM + SHAP.</p>
-  <p><strong>Stack:</strong> PyTorch, OpenCLIP ViT-B/32, Scikit-learn, Streamlit.</p>
+  <h3>Common Interviewer Follow-up Questions</h3>
+  <div class="time">Questions interviewers ask after you explain a project</div>
+  <p><strong>"How did you handle class imbalance?"</strong> — SMOTE, class weights, focal loss, threshold adjustment, choosing F1 over accuracy.</p>
+  <p><strong>"How would you scale this?"</strong> — Feature store, batch vs streaming inference, quantization, async processing, caching embeddings.</p>
+  <p><strong>"How do you know the model is still working in production?"</strong> — Monitoring prediction distribution, data drift detection, shadow mode deployments, business metric correlation.</p>
+  <p><strong>"Why this model vs alternatives?"</strong> — Always frame as trade-off: interpretability vs accuracy, training speed vs inference latency, maintenance burden.</p>
+  <p><strong>"What would you do differently?"</strong> — Prepare 2-3 genuine improvements per project. Shows self-awareness and depth.</p>
+  <p><strong>"How did you evaluate it?"</strong> — Go beyond accuracy. Mention the specific metric chosen and WHY it was the right one for the problem.</p>
+</div>
+
+<div class="pitch-card">
+  <h3>UK Market Specifics</h3>
+  <div class="time">Things that differentiate UK/European ML interviews</div>
+  <p><strong>GDPR awareness:</strong> Be ready to discuss how your ML pipeline handles personal data, lawful basis for processing, and what "right to erasure" means for a trained model.</p>
+  <p><strong>Explainability:</strong> UK finance (FCA regulated) requires explainable decisions. Know SHAP, LIME, and when a simple interpretable model beats a black-box one.</p>
+  <p><strong>Responsible AI:</strong> Mentioning fairness auditing, bias detection, and model cards signals maturity. The UK AI Safety Institute puts this front and centre.</p>
+  <p><strong>Regulated industries:</strong> Many UK ML roles are in fintech, healthtech, or public sector. These require extra rigor: audit trails, human-in-the-loop, confidence thresholds.</p>
+  <p><strong>Right to Explanation (Article 22):</strong> Individuals have the right to an explanation for automated decisions that significantly affect them. This directly constrains what models you can deploy for lending, hiring, or benefits decisions.</p>
 </div>
 
 </div>
 
 <!-- ==================== FORMULAS ==================== -->
 <div class="section" id="formulas">
-<h2 class="section-title">12. Key Formulas</h2>
+<h2 class="section-title">13. Key Formulas</h2>
 
 <div class="formula-box"><span class="fname">Z-Score</span><code>z = (value - mean) / std</code></div>
 <div class="formula-box"><span class="fname">Sigmoid</span><code>&sigma;(x) = 1 / (1 + e^(-x))</code></div>
@@ -787,65 +1028,93 @@ cos([1,1], [1,0]) = 0.71 (somewhat similar)</div>
 <div class="formula-box"><span class="fname">F1 Score</span><code>F1 = 2 * (P * R) / (P + R)</code></div>
 <div class="formula-box"><span class="fname">Attention</span><code>Attn(Q,K,V) = softmax(QK^T / &radic;d) * V</code></div>
 <div class="formula-box"><span class="fname">Focal Loss</span><code>FL(pt) = -&alpha; * (1-pt)^&gamma; * log(pt)</code></div>
-<div class="formula-box"><span class="fname">Gini</span><code>G = &Sigma;((2i - n - 1) * xi) / (n * &Sigma;xi)</code></div>
+<div class="formula-box"><span class="fname">TF-IDF</span><code>TF-IDF(t,d) = TF(t,d) * log(N / df(t))</code></div>
+<div class="formula-box"><span class="fname">RRF Score</span><code>RRF(d) = &Sigma; 1 / (k + rank(d))  where k=60</code></div>
+<div class="formula-box"><span class="fname">Precision@K</span><code>P@K = |{relevant} &cap; {top-K}| / K</code></div>
+<div class="formula-box"><span class="fname">MRR</span><code>MRR = (1/|Q|) * &Sigma; 1 / rank_i</code></div>
 
 </div>
 
 <!-- ==================== QUIZ ==================== -->
 <div class="section" id="quiz">
-<h2 class="section-title">13. Self-Quiz (Click to Reveal)</h2>
+<h2 class="section-title">14. Self-Quiz (Click to Reveal)</h2>
 
 <div class="quiz-section">
 <h3>Test Yourself</h3>
 
 <div class="quiz-q" onclick="this.classList.toggle('open')">
-  <div class="q">What's the difference between precision and recall?</div>
-  <div class="a">Precision = of my positive predictions, how many were correct? Recall = of all actual positives, how many did I catch? Precision cares about false positives, recall cares about false negatives.</div>
+  <div class="q">What is the difference between precision and recall? When do you optimize for each?</div>
+  <div class="a">Precision = of my positive predictions, how many were correct? Recall = of all actual positives, how many did I catch? Optimize precision when false positives are costly (spam filters — wrongly blocking a legitimate email is bad). Optimize recall when false negatives are costly (cancer detection — missing a real case is worse).</div>
 </div>
 
 <div class="quiz-q" onclick="this.classList.toggle('open')">
-  <div class="q">Why was 76% accuracy bad in your EEG project?</div>
-  <div class="a">The CNN predicted the majority class for everything. 76% of the data was one class, so always predicting that class = 76% accuracy but F1=0.013. It learned nothing. CLIP actually classified both classes: 24% accuracy but F1=0.345.</div>
+  <div class="q">A model has 99% accuracy on fraud detection. Is it good? How would you evaluate it properly?</div>
+  <div class="a">Not necessarily. If 99% of transactions are legitimate, a model that always predicts "not fraud" achieves 99% accuracy but catches zero fraud. Evaluate with F1 score, Precision@threshold, Recall, and AUC-ROC. Also check the confusion matrix for the minority class performance.</div>
 </div>
 
 <div class="quiz-q" onclick="this.classList.toggle('open')">
-  <div class="q">Explain RAG in 30 seconds.</div>
-  <div class="a">Embed your documents and store in a vector database. When user asks a question, embed the question, search for similar document chunks, pass those chunks + question to an LLM, get an answer grounded in real data instead of hallucinated.</div>
+  <div class="q">Explain RAG in 30 seconds. What problem does it solve?</div>
+  <div class="a">Embed your documents and store in a vector database. When a user asks a question, embed the question, search for semantically similar document chunks, inject those chunks into the LLM prompt alongside the question. The LLM generates an answer grounded in real retrieved data rather than guessing from memory. Solves: hallucination, knowledge cutoff, lack of company-specific knowledge — without retraining.</div>
 </div>
 
 <div class="quiz-q" onclick="this.classList.toggle('open')">
-  <div class="q">What does temperature do in LLM inference?</div>
-  <div class="a">Controls randomness. Temperature=0 always picks the highest probability token (deterministic). Temperature=1+ adds randomness (creative). Technically: divides logits by temperature before softmax.</div>
+  <div class="q">What is temperature in LLM inference and when would you set it to 0?</div>
+  <div class="a">Temperature controls randomness by scaling logits before softmax. Temperature=0 always picks the highest probability token (fully deterministic). Set it to 0 for: code generation, structured data extraction, financial calculations, any task requiring reproducibility. Use higher temperatures for brainstorming, creative writing, or when you want diverse outputs.</div>
 </div>
 
 <div class="quiz-q" onclick="this.classList.toggle('open')">
-  <div class="q">Why does your NeutroFi risk manager use rules instead of LLM?</div>
-  <div class="a">LLMs can hallucinate. For financial recommendations, you need deterministic guardrails. If confidence < 0.55, force "Hold" regardless. New buyers need >0.8 confidence. You can't trust pure LLM output for money decisions.</div>
+  <div class="q">Random Forest vs XGBoost — what is the fundamental difference?</div>
+  <div class="a">Random Forest uses bagging: trees trained INDEPENDENTLY on random data subsets, then vote (parallel). XGBoost uses boosting: trees trained SEQUENTIALLY where each tree fixes the errors of the previous one. XGBoost usually achieves higher accuracy but is more sensitive to hyperparameters and can overfit. Random Forest is a safer default; XGBoost is worth tuning when you need maximum accuracy on tabular data.</div>
 </div>
 
 <div class="quiz-q" onclick="this.classList.toggle('open')">
-  <div class="q">Random Forest vs XGBoost?</div>
-  <div class="a">Random Forest: trees trained INDEPENDENTLY on random subsets, vote at end (bagging). XGBoost: trees trained SEQUENTIALLY, each fixing errors of the previous (boosting). XGBoost usually more accurate but needs more tuning.</div>
+  <div class="q">Explain the transformer attention mechanism. What are Q, K, V?</div>
+  <div class="a">Q (Query) = what this token is looking for. K (Key) = what information each token offers. V (Value) = what information each token actually provides. Compute attention scores: Q dot K for every token pair. Scale by sqrt(d) to prevent vanishing gradients. Apply softmax to get a probability distribution. Multiply by V to get a weighted sum of values. Result: each token is represented as a context-aware mixture of all other tokens.</div>
 </div>
 
 <div class="quiz-q" onclick="this.classList.toggle('open')">
-  <div class="q">What is backpropagation?</div>
-  <div class="a">After the forward pass (prediction), calculate the loss (error). Then flow the error BACKWARDS through the network using chain rule to compute how much each weight contributed to the error. Then update weights proportionally.</div>
+  <div class="q">When would you choose fine-tuning vs RAG vs just prompting?</div>
+  <div class="a">Prompting: quick, no training, good for simple tasks where the model already has the knowledge. RAG: need company-specific or dynamic data, no training needed, bottleneck is retrieval quality. Fine-tuning: need a specific style, format, or domain vocabulary baked in; worth the compute when behavior needs to be consistent across thousands of calls. In practice: try prompting first, then RAG, then fine-tuning.</div>
 </div>
 
 <div class="quiz-q" onclick="this.classList.toggle('open')">
-  <div class="q">Why did you use z-score + sigmoid at Elara?</div>
-  <div class="a">Z-score compares a signal against its baseline (how unusual is this?). But z-scores can be any number (-3 to +3). Sigmoid squashes them to 0-100 for managers to read easily. A manager sees "score: 72" not "z-score: 1.3".</div>
+  <div class="q">What is backpropagation and how does it work?</div>
+  <div class="a">After the forward pass (prediction), calculate the loss (how wrong). Use the chain rule of calculus to flow the error BACKWARDS through the network: compute how much each weight contributed to the final error (gradient). Then update each weight proportionally: weight -= learning_rate * gradient. This is gradient descent applied via the chain rule across many layers in sequence.</div>
 </div>
 
 <div class="quiz-q" onclick="this.classList.toggle('open')">
-  <div class="q">Explain the Transformer attention mechanism.</div>
-  <div class="a">Each word has Q (query), K (key), V (value) vectors. Compute attention scores: Q dot K for every word pair. Scale by sqrt(d). Softmax to get probabilities. Multiply by V for weighted output. This lets each word attend to all other words simultaneously.</div>
+  <div class="q">What is data drift and how would you detect it in production?</div>
+  <div class="a">Data drift is when the distribution of incoming data shifts from the training data distribution. Detection: monitor feature statistics (mean, std, percentiles) and compare to training baseline. Use KS test or PSI (Population Stability Index) for statistical tests. Also monitor prediction distribution — a sudden shift in output distribution often signals input drift. Set up alerts and retrain triggers.</div>
 </div>
 
 <div class="quiz-q" onclick="this.classList.toggle('open')">
-  <div class="q">When would you use fine-tuning vs RAG vs prompting?</div>
-  <div class="a">Prompting: quick, no training, good for simple tasks. RAG: need company-specific data, no training needed, bottleneck is retrieval. Fine-tuning: need specific behavior/format, requires data + compute, risk of catastrophic forgetting.</div>
+  <div class="q">Why does GDPR matter for ML systems? Name two concrete impacts on a UK ML pipeline.</div>
+  <div class="a">1. Training data must have a lawful basis for processing — you cannot just scrape personal data to train a model. Data minimisation means only collecting features necessary for the task. 2. Right to erasure ("right to be forgotten") — if a user requests deletion, you may need to retrain the model without their data or implement machine unlearning, since the data may be encoded in model weights. Also: Article 22 requires explainability for automated decisions affecting individuals (loans, hiring, benefits).</div>
+</div>
+
+<div class="quiz-q" onclick="this.classList.toggle('open')">
+  <div class="q">What is the difference between interpretability and explainability in ML?</div>
+  <div class="a">Interpretability: the model structure is inherently human-understandable without additional tools. Decision trees, linear/logistic regression are interpretable — you can trace exactly why a prediction was made. Explainability: the model is a black box but you add post-hoc tools to explain specific predictions. SHAP assigns feature attribution values. LIME builds a local linear approximation. GradCAM highlights relevant image regions. UK finance regulators (FCA) often require explainability for credit scoring.</div>
+</div>
+
+<div class="quiz-q" onclick="this.classList.toggle('open')">
+  <div class="q">Explain BM25 vs dense embedding retrieval. When would you use each?</div>
+  <div class="a">BM25: keyword-based, probabilistic extension of TF-IDF, fast, no GPU, great for exact term matching. Dense retrieval: neural embeddings + cosine similarity, captures semantic meaning, handles paraphrasing and synonyms. BM25 wins when exact keywords matter (product codes, legal terms, error codes). Dense wins when meaning matters more than exact words. Hybrid search (BM25 + dense + RRF reranking) typically beats either alone in production RAG systems.</div>
+</div>
+
+<div class="quiz-q" onclick="this.classList.toggle('open')">
+  <div class="q">What is function calling / tool use in LLMs? How does it work mechanically?</div>
+  <div class="a">You define tools as JSON schemas (name, description, parameters). The LLM receives the tool definitions in its system prompt or context. When it decides a tool is needed, it returns a structured tool_call object with the function name and arguments instead of free text. Your application code parses this, executes the actual function, and returns the result back to the model to continue reasoning. The model never executes code directly — you do the execution and feed results back.</div>
+</div>
+
+<div class="quiz-q" onclick="this.classList.toggle('open')">
+  <div class="q">How do you handle class imbalance? Name three techniques.</div>
+  <div class="a">1. Resampling: SMOTE (oversample minority class by synthesizing new examples between real ones) or random undersampling. 2. Class weights: tell the model to penalize minority class errors more (class_weight='balanced' in sklearn). 3. Focal loss: down-weights easy examples and up-weights hard/rare ones — used in object detection, effective for extreme imbalance. 4. Threshold tuning: default 0.5 threshold may be wrong; optimize using precision-recall curve for your use case. Always evaluate with F1 or AUC-ROC, not accuracy.</div>
+</div>
+
+<div class="quiz-q" onclick="this.classList.toggle('open')">
+  <div class="q">What is vLLM and why is it used for LLM serving at scale?</div>
+  <div class="a">vLLM is a high-throughput LLM inference engine. Key innovation: PagedAttention — manages KV cache memory like an OS manages virtual memory pages, dramatically reducing memory fragmentation. Continuous batching: as soon as one request finishes, a new one joins the batch without waiting — improves GPU utilization from ~20% (naive serving) to 80%+. Used when you need to serve LLMs to many concurrent users without paying for proportionally more GPUs.</div>
 </div>
 
 </div>
@@ -853,8 +1122,8 @@ cos([1,1], [1,0]) = 0.71 (somewhat similar)</div>
 
 <!-- ==================== FLASHCARD SECTION ==================== -->
 <div class="section" id="flashcard-section">
-<h2 class="section-title">14. Flashcard Mode</h2>
-<p style="color: #888; margin-bottom: 16px;">Click the "Flashcards" button in the top bar to start. Click the card to flip, use arrows to navigate. Practice daily until every term is instant.</p>
+<h2 class="section-title">15. Flashcard Mode</h2>
+<p style="color: #888; margin-bottom: 16px;">Click the "Flashcards" button in the top bar to start. Click the card to flip, use arrow keys to navigate. Space bar flips. Escape closes. Mastered cards are skipped — mark terms mastered as you learn them.</p>
 </div>
 
 </div>
